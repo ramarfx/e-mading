@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +14,45 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $userSiswa = User::factory()->create([
+            'name' => 'rama',
+            'email' => 'rama@gmail.com',
+        ]);
+
+        $userSiswa->siswa()->create([
+            'nis' => '123456',
+        ]);
+
+        $userOsis = User::factory()->create([
+            'name' => 'osis',
+            'email' => 'osis@gmail.com',
+        ]);
+
+        $userOsis->siswa()->create([
+            'nis' => '102192',
+        ]);
+
+        $userEkskul = User::factory()->create([
+            'name' => 'ekskul',
+            'email' => 'ekskul@gmail.com',
+        ]);
+
+        $userEkskul->siswa()->create([
+            'nis' => '102193',
+        ]);
+
+        $userGuru = User::factory()->create([
+            'name' => 'guru',
+            'email' => 'guru@gmail.com',
+        ]);
+
+        $userGuru->guru()->create([
+            'nip' => '907576',
+        ]);
     }
 }
