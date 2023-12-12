@@ -21,21 +21,28 @@
                   <li class="group">
                     <a href="/posts" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Posts</a>
                   </li>
-                  <li class="group">
-                    <a href="#home" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Login</a>
-                  </li>
-                  <li class="group">
-                    <a href="/dashboard"
-                      class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Register</a>
-                  </li>
+                  @auth
+                    <div class="flex flex-col items-center">
+                      <div class="h-[32px] w-[32px] bg-sky-400">
+                      </div>
+
+                      <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <a onclick="return confirm('Apakah Yakin?') ? this.parentElement.submit() : null "
+                          class="mx-5 flex cursor-pointer py-2 text-base text-slate-600 group-hover:text-primary">Logout</a>
+                      </form>
+                    </div>
+                  @else
+                    <li class="group">
+                      <a href="/login" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Login</a>
+                    </li>
+                    <li class="group">
+                      <a href="/register"
+                        class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Register</a>
+                    </li>
+                  @endauth
                 </ul>
               </nav>
-
-              {{-- <div class="flex flex-col items-center">
-                <div class="h-[32px] w-[32px] bg-sky-400">
-
-                </div>
-              </div> --}}
             </div>
           </div>
         </div>

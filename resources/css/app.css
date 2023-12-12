@@ -29,5 +29,9 @@
     @apply -top-[15px] text-primary text-base bg-white;
 }
 
+.show{
+    @apply block;
+}
+
 
 

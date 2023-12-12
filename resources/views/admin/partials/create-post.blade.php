@@ -12,6 +12,12 @@
             <input type="text" id="title" name="title" required
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
           </div>
+          <div class="mb-4">
+            <label for="title" class="mb-2 block text-sm font-bold text-gray-700">Deskripsi</label>
+            <textarea type="" id="title" name="title" required
+              class="w-full rounded border px-3 h-96 py-2 leading-tight text-gray-700">
+            </textarea>
+          </div>
 
           <div class="mb-4">
             <label for="category" class="mb-2 block text-sm font-bold text-gray-700">Kategori</label>
@@ -20,13 +26,17 @@
               <option value="teknologi">Pengumuman</option>
               <option value="fashion">Event</option>
               <option value="travel">Berita</option>
+              <option value="ekstrakulikuler">Ekstrakulikuler</option>
             </select>
           </div>
 
           <div class="mb-4">
             <label for="priority" class="mb-2 block text-sm font-bold text-gray-700">Tingkat Prioritas</label>
-            <input type="number" id="priority" name="priority" min="1" max="10" required
-              class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
+            <select id="prioritas" name="prioritas" required
+            class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
+            <option value="fashion">Biasa</option>
+            <option value="teknologi">Penting</option>
+          </select>
           </div>
 
           <div class="mb-4">
@@ -39,6 +49,10 @@
             <label for="link" class="mb-2 block text-sm font-bold text-gray-700">Tautan (opsional)</label>
             <input type="number" id="link" name="link" min="1" max="10"
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
+          </div>
+          <div class="mb-4">
+            <label for="link" class="mb-2 block text-sm font-bold text-gray-700">Atur jadwal (opsional)</label>
+            <input type="date" name="jadwal" id="jadwal" class="w-full rounded px-3 py-2 text-gray-700 border">
           </div>
 
           <div class="mb-6 text-center">

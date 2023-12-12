@@ -2,7 +2,20 @@
 
 @section('container')
   <div class="flex h-screen">
-    @include('components.sidebar')
+    <div class="flex-shrink-0 bg-white">
+      <div class="p-4">
+        <h2 class="mb-4 text-2xl font-bold">Mading Digital</h2>
+        <ul class="space-y-2">
+          <li><a href="/home" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i class="fa-solid fa-house"></i>
+              Home</a></li>
+          <li><a href="/user" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
+                class="fa-regular fa-user"></i> List User</a>
+          </li>
+          <li><a href="#" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
+                class="fa-regular fa-bookmark"></i>Favorit saya</a></li>
+        </ul>
+      </div>
+    </div>
 
     <div class="flex-1 p-8">
       @include('components.search')
@@ -13,8 +26,7 @@
           <div class="relative w-full bg-primary">
             <img src="{{ asset('assets/img/poster.jpeg') }}"
               class="h-[150px] w-full max-w-full object-cover object-center" alt="poster infografis">
-            <span class="absolute left-4 top-3 rounded-md bg-yellow-300 px-2 py-1 text-xs text-yellow-900">menunggu
-              persetujuan</span>
+              <span class="absolute left-4 top-3 rounded-md bg-red-500 px-2 py-1 text-xs text-red-100">Penting</span>
           </div>
           <div class="rounded border px-4 pt-4">
             <h1 class="overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold">Karya infografis lomba
@@ -25,10 +37,7 @@
                 <div class="h-5 w-5 rounded-full bg-primary"></div>
                 <p class="text-sm text-secondary">username</p>
               </div>
-              <div class="flex gap-5">
-                <i class="fa-regular fa-pen-to-square"></i>
-                <i class="fa-solid fa-trash"></i>
-              </div>
+              <i class="fa-regular fa-bookmark text-primary scale-150"></i>
             </div>
           </div>
         </div>
@@ -37,7 +46,7 @@
           <div class="relative w-full bg-primary">
             <img src="{{ asset('assets/img/festfun.jpg') }}"
               class="h-[150px] w-full max-w-full object-cover object-center" alt="poster infografis">
-            <span class="absolute left-4 top-3 rounded-md bg-primary px-2 py-1 text-xs text-white">disetujui</span>
+              <span class="absolute left-4 top-3 rounded-md bg-primary px-2 py-1 text-xs text-white">Biasa</span>
           </div>
           <div class="rounded border px-4 pt-4">
             <h1 class="text-base font-semibold">FestFun clasmeet 2023</h1>
@@ -47,10 +56,7 @@
                 <div class="h-5 w-5 rounded-full bg-primary"></div>
                 <p class="text-sm text-secondary">username</p>
               </div>
-              <div class="flex gap-5">
-                <i class="fa-regular fa-pen-to-square"></i>
-                <i class="fa-solid fa-trash"></i>
-              </div>
+              <i class="fa-regular fa-bookmark text-primary scale-150"></i>
             </div>
           </div>
         </div>

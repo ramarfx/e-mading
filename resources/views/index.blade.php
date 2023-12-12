@@ -24,7 +24,7 @@
   <!-- Daftar Posting -->
   <section class="py-12">
     <div class="container mx-auto px-4">
-      <h2 class="mb-6 text-2xl font-bold">Posting Terbaru</h2>
+      <h2 class="mb-6 text-2xl font-bold text-center">Pengumuman Terbaru</h2>
       <!-- List Posting -->
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         <!-- Contoh Posting -->
