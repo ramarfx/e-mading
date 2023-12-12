@@ -54,5 +54,12 @@ class DatabaseSeeder extends Seeder
         $userGuru->guru()->create([
             'nip' => '907576',
         ]);
+
+        $userOsis->posts()->create([
+            'title' => fake('id_ID')->words(5, true),
+            'description' => fake('id_ID')->sentence(),
+            'category' => 'event',
+            'priority_level' => 'biasa',
+        ]);
     }
 }

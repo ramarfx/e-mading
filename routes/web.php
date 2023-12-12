@@ -22,7 +22,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+    return view('dashboard.index');
 })->name('dashboard');
 
 //auth
@@ -33,8 +33,7 @@ Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 Route::post('/logout', LogoutController::class)->name('logout');
 
 //post
-Route::get('/posts', [PostController::class, 'index'])->name('show.post');
-Route::get('/post/create', [PostController::class, 'create_post'])->name('create.post');
+Route::resource('/post', PostController::class);
 
 //user
 Route::get('/posts/user', function () {
@@ -44,5 +43,5 @@ Route::get('/posts/user', function () {
 
 //list user
 Route::get('/users', function () {
-    return view('admin.partials.show-user');
+    return view('dashboard.partials.show-user');
 });
