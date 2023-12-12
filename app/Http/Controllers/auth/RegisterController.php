@@ -22,35 +22,20 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-
-        $datas = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+        $validated = $request->validate([
+            'name'     => ['required', 'string', 'max:255'],
             'email'    => ['required', 'string', 'email:dns', 'max:255'],
             'nis'      => ['required', 'numeric'],
             'nip'      => ['required', 'numeric'],
             'password' => ['required'],
         ]);
 
-        $datas['password'] = bcrypt($datas['password']);
+        $validated['password'] = bcrypt($validated['password']);
 
-        $user = User::create($datas);
+        $user = User::create($validated);
 
         Auth::login($user);
 
         return redirect(route('dashboard'));
     }
 }
-
-// $user = User::create([
-//     'username' => $request->username,
-//     'email' => $request->email,
-//     'nis' => $request->nis,
-//     'nip' => $request->nip,
-//     'password' => Hash::make($request->password),
-// ]);
-
-// if (Auth::attempt(['email' => $user->email, 'password' => $request->password])) {
-//     $request->session()->regenerate();
-
-//     return redirect('/login');
-// }

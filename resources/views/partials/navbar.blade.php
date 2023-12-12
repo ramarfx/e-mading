@@ -19,18 +19,33 @@
                     <a href="/" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Home</a>
                   </li>
                   <li class="group">
-                    <a href="/posts" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Posts</a>
+                    <a href="/post" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Posts</a>
                   </li>
                   @auth
-                    <div class="flex flex-col items-center">
-                      <div class="h-[32px] w-[32px] bg-sky-400">
+                    <div class="relative flex flex-col items-center">
+                      <button id="dropdownBtn" class="h-[40px] w-[40px] overflow-hidden rounded-full bg-sky-400 p-1"
+                        onclick="">
+                        <img src="{{ asset('assets/img/festfun.jpg') }}"
+                          class="h-auto w-full max-w-full object-cover object-center" alt="">
+                      </button>
+
+                      <div id="dropdownContent" class="absolute right-0 top-12 hidden rounded border bg-white shadow-sm">
+                        <ul class="flex w-[200px] flex-col gap-5 p-3">
+                          <li>
+                            <p href="" class="border-b pb-3 text-lg font-semibold capitalize text-primary">Hi,
+                              {{ auth()->user()->name }}</p>
+                          </li>
+                          <li><a href="" class="text-base flex items-center gap-3 text-secondary hover:text-primary"><i
+                                class="fa-solid fa-user"></i>profil</a></li>
+                          <li><a href="" class="text-base flex items-center gap-3 text-secondary hover:text-primary"><i
+                                class="fa-solid fa-bookmark"></i> favorit saya</a></li>
+                          <li><a href="" class="text-base flex items-center border-t pt-2 gap-3 text-secondary hover:text-primary"> <i
+                                class="fa-solid fa-right-from-bracket"></i>logout</a></li>
+                          </li>
+                        </ul>
                       </div>
 
-                      <form action="{{ route('logout') }}" method="post">
-                        @csrf
-                        <a onclick="return confirm('Apakah Yakin?') ? this.parentElement.submit() : null "
-                          class="mx-5 flex cursor-pointer py-2 text-base text-slate-600 group-hover:text-primary">Logout</a>
-                      </form>
+
                     </div>
                   @else
                     <li class="group">

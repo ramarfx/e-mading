@@ -16,3 +16,11 @@ bookmarkButtons.forEach((bookmarkBtn) =>{
         bookmarkBtn.classList.toggle('fa-regular');
     })
 })
+
+//dropdown
+const dropdownButtons = document.getElementById('dropdownBtn');
+const dropdownContent = document.getElementById('dropdownContent');
+
+dropdownButtons.addEventListener('click', ()=>{
+    dropdownContent.classList.toggle('show');
+})

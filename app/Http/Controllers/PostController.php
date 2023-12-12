@@ -3,16 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $posts = Post::with('user')->whereBelongsTo(auth()->user())->get();
+        $user = auth()->user();
+        $posts = Post::with('user')->where('user_id', $user->id)->get();
 
         return view('dashboard.post.index', compact('posts'));
     }
@@ -31,12 +38,12 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'category' => 'required',
-            'priority_level' => 'required',
-            'media' => 'nullable',
-            'link' => 'nullable',
+            'title'          => 'required', 'max:250', 'string',
+            'description'    => 'required', 'string',
+            'category'       => 'required', 'string',
+            'priority_level' => 'required', 'string',
+            'media'          => 'nullable', 'mimes:jpg,jpeg,png',
+            'link'           => 'nullable',
         ]);
 
         $request->user()->posts()->create($validated);
@@ -47,16 +54,17 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Post $post) : View
     {
-        //
+        return view('dashboard.post.show', compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Post $post): View
     {
+
         return view('dashboard.post.edit', compact('post'));
     }
 
@@ -65,7 +73,18 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $validated = $request->validate([
+            'title'          => 'required', 'max:250', 'string',
+            'description'    => 'required', 'string',
+            'category'       => 'required', 'string',
+            'priority_level' => 'required', 'string',
+            'media'          => 'nullable', 'mimes:jpg,jpeg,png',
+            'link'           => 'nullable',
+        ]);
+
+        $post->update($validated);
+
+        return Redirect::route('post.index');
     }
 
     /**
@@ -73,6 +92,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return Redirect::route('post.index');
     }
 }
