@@ -18,16 +18,16 @@ class UserRoleSeeder extends Seeder
             'name' => 'admin',
         ]);
         $siswaRole = Role::create([
-            'name' => 'siswa',
+            'name' => 'student',
         ]);
         $ekskulRole = Role::create([
-            'name' => 'ketua ekskul',
+            'name' => 'ekskul',
         ]);
         $osisRole = Role::create([
             'name' => 'osis',
         ]);
         $guruRole = Role::create([
-            'name' => 'guru',
+            'name' => 'teacher',
         ]);
 
         $adminUser = User::factory()->create([

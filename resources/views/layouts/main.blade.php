@@ -14,13 +14,13 @@
 </head>
 
 <body>
-  @include('partials.navbar')
+  @include('components.navbar')
 
   <div class="mt-[80px]">
     @yield('container')
   </div>
 
-@include('partials.footer')
+@include('components.footer')
 
 <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>

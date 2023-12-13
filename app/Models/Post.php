@@ -16,6 +16,7 @@ class Post extends Model
         'category',
         'priority_level',
         'media',
+        'is_accept',
         'link',
         'publish_at',
     ];

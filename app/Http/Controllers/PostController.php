@@ -21,7 +21,7 @@ class PostController extends Controller
         $user = auth()->user();
         $posts = Post::with('user')->where('user_id', $user->id)->get();
 
-        return view('dashboard.post.index', compact('posts'));
+        return view('admin.post.index', compact('posts'));
     }
 
     /**
@@ -29,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('dashboard.post.create');
+        return view('admin.post.create');
     }
 
     /**
@@ -56,7 +56,7 @@ class PostController extends Controller
      */
     public function show(Post $post) : View
     {
-        return view('dashboard.post.show', compact('post'));
+        return view('admin.post.show', compact('post'));
     }
 
     /**
@@ -65,7 +65,7 @@ class PostController extends Controller
     public function edit(Post $post): View
     {
 
-        return view('dashboard.post.edit', compact('post'));
+        return view('admin.post.edit', compact('post'));
     }
 
     /**

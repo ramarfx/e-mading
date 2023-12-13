@@ -1,10 +1,13 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\AcceptPostController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\admin\UsersController;
+use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,31 +20,27 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+// HomeController
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->name('dashboard');
+// DashboardController
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 
-//auth
-Route::get('/register', [RegisterController::class, 'create'])->name('register.index');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
-Route::get('/login', [LoginController::class, 'create'])->name('login.index');
-Route::post('/login', [LoginController::class, 'store'])->name('login.store');
-Route::post('/logout', LogoutController::class)->name('logout');
+// Auth routes
+Route::group(['prefix' => 'auth'], function () {
+    Route::get('/register', [RegisterController::class, 'create'])->name('register.index');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+    Route::get('/login', [LoginController::class, 'create'])->name('login.index');
+    Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+    Route::post('/logout', LogoutController::class)->name('logout');
+});
 
-//post
+// Post routes
 Route::resource('/post', PostController::class);
+Route::patch('/post/{post}/accept', [AcceptPostController::class, '__invoke'])->name('post.accept');
 
-//user
-Route::get('/posts/user', function () {
-    return view('user.show-post');
-});
+// User routes
+// Route::get('/posts/user', [UserController::class, 'showPost']);
 
-
-//list user
-Route::get('/users', function () {
-    return view('dashboard.partials.show-user');
-});
+// User list

@@ -16,10 +16,10 @@
                 class="bg-dark shadow-lightDark-100 absolute right-4 top-full hidden w-full max-w-[250px] rounded-lg py-5 shadow-sm lg:static lg:mr-10 lg:block lg:max-w-full lg:rounded-none lg:bg-transparent lg:shadow-none">
                 <ul class="block lg:flex">
                   <li class="group">
-                    <a href="/" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Home</a>
+                    <a href="{{ route('home') }}" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Home</a>
                   </li>
                   <li class="group">
-                    <a href="/post" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Posts</a>
+                    <a href="{{ route('dashboard') }}" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Dashboard</a>
                   </li>
                   @auth
                     <div class="relative flex flex-col items-center">
@@ -35,12 +35,20 @@
                             <p href="" class="border-b pb-3 text-lg font-semibold capitalize text-primary">Hi,
                               {{ auth()->user()->name }}</p>
                           </li>
-                          <li><a href="" class="text-base flex items-center gap-3 text-secondary hover:text-primary"><i
+                          <li><a href=""
+                              class="flex items-center gap-3 text-base text-secondary hover:text-primary"><i
                                 class="fa-solid fa-user"></i>profil</a></li>
-                          <li><a href="" class="text-base flex items-center gap-3 text-secondary hover:text-primary"><i
+                          <li><a href=""
+                              class="flex items-center gap-3 text-base text-secondary hover:text-primary"><i
                                 class="fa-solid fa-bookmark"></i> favorit saya</a></li>
-                          <li><a href="" class="text-base flex items-center border-t pt-2 gap-3 text-secondary hover:text-primary"> <i
-                                class="fa-solid fa-right-from-bracket"></i>logout</a></li>
+                          <li><a href=""
+                              class="flex items-center gap-3 border-t pt-2 text-base text-secondary hover:text-primary">
+                              <i class="fa-solid fa-right-from-bracket"></i>
+                              <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit">Logout</button>
+                              </form>
+                            </a></li>
                           </li>
                         </ul>
                       </div>
@@ -49,10 +57,10 @@
                     </div>
                   @else
                     <li class="group">
-                      <a href="/login" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Login</a>
+                      <a href="{{ route('login.index') }}" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Login</a>
                     </li>
                     <li class="group">
-                      <a href="/register"
+                      <a href="{{ route('register.index') }}"
                         class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Register</a>
                     </li>
                   @endauth

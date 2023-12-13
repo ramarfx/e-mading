@@ -46,6 +46,13 @@
                         <i class="fa-solid fa-trash cursor-pointer hover:text-red-500"></i>
                       </button>
                     </form>
+                    @if (!$post->is_accept)
+                      <form action="{{ route('post.accept', $post) }}" method="post">
+                        @csrf
+                        @method('patch')
+                        <button type="submit"><i class="fa-solid fa-check"></i></button>
+                      </form>
+                    @endif
                   </div>
                 </div>
               </div>
