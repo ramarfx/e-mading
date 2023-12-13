@@ -19,11 +19,14 @@ class PostController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        if ($user->roles->contains('name', 'admin')) {
-            $posts = Post::with('user')->orderByRaw("FIELD(priority_level, 'penting', 'biasa')")->get();
+        $currentUser = auth()->user();
+        $query       = Post::with('user')
+                        ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')");
+
+        if ($currentUser->roles->contains('name', 'admin')) {
+            $posts = $query->get();
         } else {
-            $posts = Post::whereBelongsTo($user)->orderByRaw("FIELD(priority_level, 'penting', 'biasa')")->get();
+            $posts = $query->whereBelongsTo($currentUser)->get();
         }
 
         return view('admin.post.index', compact('posts'));

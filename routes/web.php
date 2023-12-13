@@ -33,14 +33,14 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/logout', LogoutController::class)->name('logout');
 });
 
-// Post routes
-Route::resource('/post', PostController::class);
-Route::patch('/post/{post}/accept', [AcceptPostController::class, '__invoke'])->name('post.accept');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'post.crud'])->group(function () {
     // DashboardController
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+    // Post routes
+    Route::resource('/post', PostController::class);
+    Route::patch('/post/{post}/accept', [AcceptPostController::class, '__invoke'])->name('post.accept');
 });
 
 
