@@ -6,16 +6,20 @@
     <div class="container mx-auto px-4">
       <div class="flex flex-wrap-reverse items-center px-10">
         <div class="w-full lg:w-1/2">
-          <h2 class="mb-6 text-3xl text-center md:text-start lg:text-5xl font-bold">Selamat Datang di Mading Digital Sekolah</h2>
-          <p class="text-base leading-relaxed text-secondary w-4/5">
+          <h2 class="mb-6 text-center text-3xl font-bold md:text-start lg:text-5xl">Selamat Datang di Mading Digital
+            <span class="text-primary">SMKN 46 Jakarta</span>
+          </h2>
+          <p class="w-4/5 text-base leading-relaxed text-secondary">
             Mading digital sekolah merupakan tempat untuk berbagi informasi, pengumuman, dan kegiatan sekolah secara
             online.
             Bergabunglah dengan kami untuk tetap terhubung dengan kegiatan sekolah dan komunitas.
           </p>
-          <a href="" class="text-base inline-block mt-4 py-2 px-5 bg-primary text-white group">Baca selengkapnya <i class="fa-solid fa-arrow-right-long ml-3 "></i></a>
+          <a href="" class="group mt-4 inline-block bg-primary px-5 py-2 text-base text-white">Baca selengkapnya <i
+              class="fa-solid fa-arrow-right-long ml-3"></i></a>
         </div>
-        <div class="w-full self-center lg:w-1/2 mb-16">
-            <img src="{{ asset('assets/img/mading.png') }}" class="max-w-full w-[400px] h-auto mx-auto" alt="gambar mading digital">
+        <div class="mb-16 w-full self-center lg:w-1/2">
+          <img src="{{ asset('assets/img/mading.png') }}" class="mx-auto h-auto w-[400px] max-w-full"
+            alt="gambar mading digital">
         </div>
       </div>
     </div>
@@ -24,23 +28,20 @@
   <!-- Daftar Posting -->
   <section class="py-12">
     <div class="container mx-auto px-4">
-      <h2 class="mb-6 text-2xl font-bold text-center">Pengumuman Terbaru</h2>
+      <h2 class="mb-6 text-center text-2xl font-bold">Pengumuman Terbaru</h2>
       <!-- List Posting -->
       <div class="grid grid-cols-2 gap-8 md:grid-cols-2 lg:grid-cols-4">
         <!-- Contoh Posting -->
         @foreach ($posts as $post)
-        <div class="flex flex-col">
+          <div class="flex flex-col">
             <div class="relative w-full bg-primary">
-              <img
-                src="{{ $post->media == 'placeholder' ? asset('assets/img/poster.jpeg') : \Illuminate\Support\Facades\Storage::url($post->media) }}"
-                class="h-[150px] w-full max-w-full object-cover object-center" alt="poster infografis">
-
-              @if ($post->is_accept)
-                <span class="absolute left-4 top-3 rounded-md bg-primary px-2 py-1 text-xs text-white">disetujui</span>
-              @else
-                <span class="absolute left-4 top-3 rounded-md bg-yellow-300 px-2 py-1 text-xs text-yellow-900">menunggu
-                  persetujuan</span>
-              @endif
+              @include('components.media')
+              <div class="absolute left-4 top-3">
+                @if ($post->priority_level === 'penting')
+                  <span class="rounded-md bg-red-500 px-2 py-1 text-xs text-white">{{ $post->priority_level }}</span>
+                @endif
+                <span class="top-3 rounded-md bg-primary px-2 py-1 text-xs text-white">{{ $post->category }}</span>
+              </div>
 
             </div>
             <div class="rounded border px-4 pt-4">
@@ -56,7 +57,7 @@
                 </div>
                 <div class="flex gap-5">
                   <a href="{{ route('post.edit', $post) }}">
-                    <i class="fa-regular fa-bookmark text-primary scale-150"></i>
+                    <i class="fa-regular fa-bookmark scale-150 text-primary"></i>
                   </a>
                 </div>
               </div>

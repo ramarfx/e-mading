@@ -1,10 +1,10 @@
 @extends('layouts.main')
 
 @section('container')
-  <div class="flex h-screen">
+  <div class="flex">
     @include('components.sidebar')
 
-    <div class="flex-1 p-8">
+    <div class="min-h-screen flex-1 p-8">
       @include('components.search')
 
       @if (!empty($posts))
@@ -12,16 +12,19 @@
           @foreach ($posts as $post)
             <div class="flex flex-col">
               <div class="relative w-full bg-primary">
-                <img
-                  src="{{ $post->media == 'placeholder' ? asset('assets/img/poster.jpeg') : \Illuminate\Support\Facades\Storage::url($post->media) }}"
-                  class="h-[150px] w-full max-w-full object-cover object-center" alt="poster infografis">
+                @include('components.media')
 
-                @if ($post->is_accept)
-                  <span class="absolute left-4 top-3 rounded-md bg-primary px-2 py-1 text-xs text-white">disetujui</span>
-                @else
-                  <span class="absolute left-4 top-3 rounded-md bg-yellow-300 px-2 py-1 text-xs text-yellow-900">menunggu
-                    persetujuan</span>
-                @endif
+                <div class="absolute left-4 top-3">
+                  <span class="rounded-md bg-red-500 px-2 py-1 text-xs text-white">{{ $post->priority_level }}</span>
+                  <span class="top-3 rounded-md bg-primary px-2 py-1 text-xs text-white">{{ $post->category }}</span>
+                  @if ($post->is_accept)
+                    <span class=" top-3 rounded-md bg-green-500 px-2 py-1 text-xs text-white">disetujui</span>
+                  @else
+                    <span class=" top-3 rounded-md bg-yellow-300 px-2 py-1 text-xs text-yellow-900">menunggu
+                      persetujuan</span>
+                  @endif
+                </div>
+
 
               </div>
               <div class="rounded border px-4 pt-4">
@@ -34,6 +37,7 @@
                   <div class="flex items-center gap-2">
                     <div class="h-5 w-5 rounded-full bg-primary"></div>
                     <p class="text-sm text-secondary">{{ $post->user->name }}</p>
+                    <p class="text-xs text-orange-800 p-0.5 bg-orange-200 rounded">{{ $post->user->roles->first()->name }}</p>
                   </div>
                   <div class="flex gap-5">
                     <a href="{{ route('post.edit', $post) }}">
@@ -46,7 +50,9 @@
                         <i class="fa-solid fa-trash cursor-pointer hover:text-red-500"></i>
                       </button>
                     </form>
-                    @if (!$post->is_accept)
+                    @if (
+                        !$post->is_accept &&
+                            auth()->user()->roles->contains('name', 'admin'))
                       <form action="{{ route('post.accept', $post) }}" method="post">
                         @csrf
                         @method('patch')

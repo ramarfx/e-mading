@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,13 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            Post::create([
+                'user_id'        => mt_rand(1,5),
+                'title'          => fake()->words(5, true),
+                'description'    => fake()->paragraph(10, true),
+                'category'       => 'pengumuman',
+                'priority_level' => 'biasa'
+            ])
         ];
     }
 }

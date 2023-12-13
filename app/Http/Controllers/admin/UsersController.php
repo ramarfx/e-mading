@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $roles = ['admin', 'student', 'teacher', 'osis', 'ekskul'];
+        $roles = ['admin', 'student', 'teacher', 'student_council', 'ekskul'];
         $users = User::with('roles')->get();
 
         $filteredUsers = [];

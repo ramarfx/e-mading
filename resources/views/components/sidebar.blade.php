@@ -5,12 +5,18 @@
       <li><a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
             class="fa-solid fa-table-columns"></i>
           Dashboard</a></li>
-      <li><a href="{{ route('users.index') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
-            class="fa-regular fa-user"></i>
-          List User</a>
+      <li><a href="{{ route('post.index') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
+            class="fa-regular fa-file"></i>
+          postingan mu</a>
       </li>
-    <li><a href="" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
-            class="fa-regular fa-square-check"></i> submit post</a></li>
+      @if (auth()->user()->roles->contains('name', 'admin'))
+        <li><a href="{{ route('users.index') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
+              class="fa-regular fa-user"></i>
+            List User</a>
+        </li>
+        <li><a href="{{ route('post.index') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
+              class="fa-regular fa-square-check"></i> submit post</a></li>
+      @endif
     </ul>
 
     <a href="{{ route('post.create') }}"

@@ -15,7 +15,8 @@ class Post extends Model
         'description',
         'category',
         'priority_level',
-        'media',
+        'media_path',
+        'media_type',
         'is_accept',
         'link',
         'publish_at',
@@ -24,5 +25,15 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('body', 'like', '%' . $search . '%');
+            });
+        });
     }
 }

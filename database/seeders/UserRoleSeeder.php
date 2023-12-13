@@ -17,68 +17,63 @@ class UserRoleSeeder extends Seeder
         $adminRole = Role::create([
             'name' => 'admin',
         ]);
-        $siswaRole = Role::create([
+        $studentRole = Role::create([
             'name' => 'student',
         ]);
         $ekskulRole = Role::create([
             'name' => 'ekskul',
         ]);
-        $osisRole = Role::create([
-            'name' => 'osis',
+        $studentCouncilRole = Role::create([
+            'name' => 'student_council',
         ]);
-        $guruRole = Role::create([
+        $teacherRole = Role::create([
             'name' => 'teacher',
         ]);
 
+
+        // create users
         $adminUser = User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
         ]);
-
         $adminUser->roles()->attach($adminRole);
 
-        $userSiswa = User::factory()->create([
+        $studentUser = User::factory()->create([
             'name' => 'rama',
             'email' => 'rama@gmail.com',
         ]);
-
-        $userSiswa->roles()->attach($siswaRole);
-
-        $userSiswa->siswa()->create([
+        $studentUser->roles()->attach($studentRole);
+        $studentUser->siswa()->create([
             'nis' => '123456',
         ]);
 
-        $userOsis = User::factory()->create([
+        $studentCouncilUser = User::factory()->create([
             'name' => 'osis',
             'email' => 'osis@gmail.com',
         ]);
-
-        $userOsis->siswa()->create([
+        $studentCouncilUser->siswa()->create([
             'nis' => '102192',
         ]);
+        $studentCouncilUser->roles()->attach($studentCouncilRole);
 
-        $userOsis->roles()->attach($osisRole);
 
-        $userEkskul = User::factory()->create([
+        $ekskulUser = User::factory()->create([
             'name' => 'ekskul',
             'email' => 'ekskul@gmail.com',
         ]);
-
-        $userEkskul->siswa()->create([
+        $ekskulUser->siswa()->create([
             'nis' => '102193',
         ]);
+        $ekskulUser->roles()->attach($ekskulRole);
 
-        $userEkskul->roles()->attach($ekskulRole);
 
-        $userGuru = User::factory()->create([
+        $teacherUser = User::factory()->create([
             'name' => 'guru',
             'email' => 'guru@gmail.com',
         ]);
-
-        $userGuru->guru()->create([
+        $teacherUser->guru()->create([
             'nip' => '907576',
         ]);
-
-        $userGuru->roles()->attach($guruRole);
+        $teacherUser->roles()->attach($teacherRole);
     }
 }

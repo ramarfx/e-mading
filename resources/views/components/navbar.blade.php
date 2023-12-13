@@ -2,7 +2,7 @@
         <div class="container">
           <div class="relative flex items-center justify-between">
             <div class="px-4">
-              <a href="#home"
+              <a href="{{ route('home') }}"
                 class="block py-6 text-2xl font-semibold tracking-wide text-primary lg:text-2xl">E-Mading</a>
             </div>
             <div class="flex items-center px-4">
@@ -16,12 +16,16 @@
                 class="bg-dark shadow-lightDark-100 absolute right-4 top-full hidden w-full max-w-[250px] rounded-lg py-5 shadow-sm lg:static lg:mr-10 lg:block lg:max-w-full lg:rounded-none lg:bg-transparent lg:shadow-none">
                 <ul class="block lg:flex">
                   <li class="group">
-                    <a href="{{ route('home') }}" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Home</a>
-                  </li>
-                  <li class="group">
-                    <a href="{{ route('dashboard') }}" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Dashboard</a>
+                    <a href="{{ route('home') }}"
+                      class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Home</a>
                   </li>
                   @auth
+                  @if (!auth()->user()->roles->contains('name', 'student'))
+                  <li class="group">
+                    <a href="{{ route('dashboard') }}"
+                      class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Dashboard</a>
+                  </li>
+                  @endif
                     <div class="relative flex flex-col items-center">
                       <button id="dropdownBtn" class="h-[40px] w-[40px] overflow-hidden rounded-full bg-sky-400 p-1"
                         onclick="">
@@ -29,8 +33,9 @@
                           class="h-auto w-full max-w-full object-cover object-center" alt="">
                       </button>
 
-                      <div id="dropdownContent" class="absolute right-0 top-12 hidden rounded border bg-white shadow-sm">
-                        <ul class="flex w-[200px] flex-col gap-5 p-3">
+                      <div id    = "dropdownContent"
+                        class = "absolute right-0 top-12 hidden rounded border bg-white shadow-sm">
+                        <ul class = "flex w-[200px] flex-col gap-5 p-3">
                           <li>
                             <p href="" class="border-b pb-3 text-lg font-semibold capitalize text-primary">Hi,
                               {{ auth()->user()->name }}</p>
@@ -57,7 +62,8 @@
                     </div>
                   @else
                     <li class="group">
-                      <a href="{{ route('login.index') }}" class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Login</a>
+                      <a href="{{ route('login.index') }}"
+                        class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Login</a>
                     </li>
                     <li class="group">
                       <a href="{{ route('register.index') }}"

@@ -57,7 +57,7 @@
                 <div class="w-full h-px bg-secondary"></div>
             </div>
             <div class="grid grid-cols-5 gap-5 my-5">
-                @foreach ($filteredUsers['osis'] as $studentCouncil)
+                @foreach ($filteredUsers['student_council'] as $studentCouncil)
                   <div class="flex flex-col items-center justify-center rounded border p-4">
                     <h1 class="overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold">{{ $studentCouncil->name }}</h1>
                     <p class="my-2 text-sm text-primary">{{ $studentCouncil->roles->first()->name }}</p>
@@ -89,11 +89,11 @@
         </section>
         {{-- section admin end --}}
         {{-- section admin start --}}
-        <section id="admin">
+        <section id="students">
             <div class="w-full flex items-center justify-between gap-3">
                 <button class="flex items-center gap-2">
                     <i class="fa-solid fa-caret-down text-secondary"></i>
-                    <p class="text-lg font-semibold text-secondary">Admin</p>
+                    <p class="text-lg font-semibold text-secondary whitespace-nowrap">Siswa Biasa</p>
                 </button>
                 <div class="w-full h-px bg-secondary"></div>
             </div>

@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::where('is_accept', true)
-            ->latest()
+            ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')")
             ->paginate(4);
         return view('index', compact('posts'));
     }

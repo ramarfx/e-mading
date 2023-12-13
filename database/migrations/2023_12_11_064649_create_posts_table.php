@@ -18,7 +18,8 @@ return new class extends Migration
             $table->text('description');
             $table->enum('category', ['pengumuman', 'event', 'berita', 'ekstrakulikuler']);
             $table->enum('priority_level', ['biasa', 'penting']);
-            $table->string('media')->default('placeholder');
+            $table->string('media_type')->default('placeholder');
+            $table->string('media_path')->default('placeholder');
             $table->string('link')->nullable();
             $table->boolean('is_accept')->default(false);
             $table->dateTime('publish_at')->nullable();

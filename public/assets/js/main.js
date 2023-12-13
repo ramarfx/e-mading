@@ -24,3 +24,6 @@ const dropdownContent = document.getElementById('dropdownContent');
 dropdownButtons.addEventListener('click', ()=>{
     dropdownContent.classList.toggle('show');
 })
+
+//delete button
+// confirm()

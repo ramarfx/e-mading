@@ -16,16 +16,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            UserRoleSeeder::class
+            UserRoleSeeder::class,
+            PostSeeder::class,
         ]);
 
-
-        Post::create([
-            'user_id' => 2,
-            'title' => fake('id_ID')->words(5, true),
-            'description' => fake('id_ID')->sentence(),
-            'category' => 'event',
-            'priority_level' => 'biasa',
-        ]);
     }
 }

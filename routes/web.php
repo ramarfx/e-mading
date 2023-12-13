@@ -1,13 +1,14 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\AcceptPostController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\post\PostController;
+use App\Http\Controllers\admin\post\AcceptPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +24,6 @@ use App\Http\Controllers\admin\DashboardController;
 // HomeController
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// DashboardController
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/users', [UsersController::class, 'index'])->name('users.index');
-
 // Auth routes
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/register', [RegisterController::class, 'create'])->name('register.index');
@@ -39,6 +36,14 @@ Route::group(['prefix' => 'auth'], function () {
 // Post routes
 Route::resource('/post', PostController::class);
 Route::patch('/post/{post}/accept', [AcceptPostController::class, '__invoke'])->name('post.accept');
+
+Route::middleware(['auth'])->group(function () {
+    // DashboardController
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+});
+
+
 
 // User routes
 // Route::get('/posts/user', [UserController::class, 'showPost']);
