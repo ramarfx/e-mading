@@ -5,7 +5,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\auth\LogoutController;
-use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\post\PostController;
 use App\Http\Controllers\admin\post\AcceptPostController;
@@ -28,8 +27,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Auth routes
 Route::group(['prefix' => 'auth'], function () {
-    Route::get('/register', [RegisterController::class, 'create'])->name('register.index');
-    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
     Route::get('/login', [LoginController::class, 'create'])->name('login.index');
     Route::post('/login', [LoginController::class, 'store'])->name('login.store');
     Route::post('/logout', LogoutController::class)->name('logout');
