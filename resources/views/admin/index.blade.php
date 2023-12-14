@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-  <div class="flex bg-[#F8F8F8]">
+  <div class="flex bg-gray-100 min-h-screen">
 
     @include('components.sidebar')
 
@@ -14,11 +14,11 @@
         <div class="grid grid-cols-3 gap-10">
           <div class="flex flex-col rounded-md bg-white p-4">
             <h3 class="font-semibold">Jumlah User</h3>
-            <p class="text-2xl font-medium text-primary">150</p>
+            <p class="text-2xl font-medium text-primary">{{ $users }}</p>
           </div>
           <div class="flex flex-col rounded-md bg-white p-4">
             <h3 class="font-semibold">Jumlah Postingan</h3>
-            <p class="text-2xl font-medium text-primary">100</p>
+            <p class="text-2xl font-medium text-primary">{{ $posts }}</p>
           </div>
           <div class="flex flex-col rounded-md bg-white p-4">
             <h3 class="font-semibold">kunjungan</h3>
@@ -38,63 +38,6 @@
           </div>
         </div>
 
-        <!-- List of Posts -->
-        <div class="rounded-md bg-white p-4">
-          <h2 class="mb-2 text-lg font-semibold">Postingan menunggu persetujuan</h2>
-          <ul>
-            <li class="border-b border-gray-300 py-2">
-              <div class="mt-2 flex items-center justify-between px-4">
-                <p>Judul</p>
-                <div class="flex gap-5">
-                  <form action="" method="post">
-                    <button type="submit" class="mr-2 text-blue-500">Setujui</button>
-                  </form>
-                  <form action="" method="post">
-                    <button class="text-red-500">Delete</button>
-                  </form>
-                </div>
-              </div>
-            </li>
-            <li class="border-b border-gray-300 py-2">
-              <div class="mt-2 flex items-center justify-between px-4">
-                <p>Judul</p>
-                <div class="flex gap-5">
-                  <form action="" method="post">
-                    <button type="submit" class="mr-2 text-blue-500">Setujui</button>
-                  </form>
-                  <form action="" method="post">
-                    <button class="text-red-500">Delete</button>
-                  </form>
-                </div>
-              </div>
-            </li>
-            <li class="border-b border-gray-300 py-2">
-              <div class="mt-2 flex items-center justify-between px-4">
-                <p>Judul</p>
-                <div class="flex gap-5">
-                  <form action="" method="post">
-                    <button type="submit" class="mr-2 text-blue-500">Setujui</button>
-                  </form>
-                  <form action="" method="post">
-                    <button class="text-red-500">Delete</button>
-                  </form>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="rounded-md bg-white p-4">
-          <h2 class="mb-2 text-lg font-semibold">Postingan Terbaru</h2>
-          <ul>
-            <li class="border-b border-gray-300 py-2">
-              <div class="mt-2 flex items-center">
-                <button class="mr-2 text-blue-500">Edit</button>
-                <button class="text-red-500">Delete</button>
-              </div>
-            </li>
-          </ul>
-        </div>
       </div>
 
     </div>

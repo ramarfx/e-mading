@@ -23,7 +23,9 @@ class PostFactory extends Factory
                 'title'          => fake()->words(5, true),
                 'description'    => fake()->paragraph(10, true),
                 'category'       => 'pengumuman',
-                'priority_level' => 'biasa'
+                'priority_level' => 'biasa',
+                'created_at'     => now(),
+                'updated_at'     => now(),
             ])
         ];
     }
