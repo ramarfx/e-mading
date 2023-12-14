@@ -57,6 +57,8 @@
                 </div>
                 <div class="flex gap-5">
                   <form action="{{ route('bookmark.store', $post) }}" method="post">
+                    @csrf
+                    <input type="hidden" name="post_id" value="{{ $post->id }}">
                     <button type="submit">
                       <i class="fa-regular fa-bookmark scale-150 text-primary"></i>
                     </button>

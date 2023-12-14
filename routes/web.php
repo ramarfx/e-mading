@@ -44,7 +44,7 @@ Route::middleware(['auth', 'post.crud'])->group(function () {
 
     //route bookmarks
     Route::get('/bookmark', [BookmarkController::class, 'index'])->name('bookmark.index');
-    Route::post('/bookmark', [BookmarkController::class, 'store'])->name('bookmark.store');
+    Route::post('/bookmark/{post}', [BookmarkController::class, 'store'])->name('bookmark.store');
 });
 
 

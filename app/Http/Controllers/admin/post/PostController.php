@@ -21,8 +21,8 @@ class PostController extends Controller
     {
         $currentUser = auth()->user();
         $query       = Post::with('user')
-                        ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')")
-                        ->latest();
+            ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')")
+            ->latest();
 
         if ($currentUser->roles->contains('name', 'admin')) {
             $posts = $query->get();
@@ -111,6 +111,9 @@ class PostController extends Controller
         ]);
 
         if ($request->hasFile('media')) {
+            if ($post->media_path) {
+                Storage::delete($post->media_path);
+            }
             $file = $request->file('media');
 
             $allowedImageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
@@ -126,6 +129,9 @@ class PostController extends Controller
             }
         }
 
+        $validated['media_path'] = $path ?? null;
+        $validated['media_type'] = $mediaType ?? null;
+
         $post->update($validated);
 
         return Redirect::route('post.index');
@@ -136,6 +142,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->media_path) {
+            Storage::delete($post->media_path);
+        }
         $post->delete();
 
         return Redirect::route('post.index');

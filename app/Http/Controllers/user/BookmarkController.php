@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Models\Post;
 use App\Models\Bookmark;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -11,14 +12,27 @@ class BookmarkController extends Controller
 {
     public function index() : View
     {
-        $currentUser = auth()->user();
-        $bookmarks = Bookmark::with('post')->get();
-        return view('user.bookmark', compact('bookmarks'));
+        $user = request()->user();
+        $posts = $user->bookmarks()->get();
+
+        // $posts = Post::with(['user','bookmarks' => function ($query) use ($user) {
+        //     $query->where('user_id', $user->id);
+        // }])->get();
+        return view('user.bookmark', compact('posts'));
 
     }
 
-    public function create()
+    public function store(Request $request, Post $post)
     {
+        $user = $request->user();
+        // $post  = Post::find($post);
+
+        // return $post;
+
+        $user->bookmarks()->attach($post->id);
+
+        return redirect()->back();
+
 
     }
 
