@@ -20,12 +20,12 @@
                       class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Home</a>
                   </li>
                   @auth
-                  @if (!auth()->user()->roles->contains('name', 'student'))
-                  <li class="group">
-                    <a href="{{ route('dashboard') }}"
-                      class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Dashboard</a>
-                  </li>
-                  @endif
+                    @if (!auth()->user()->roles->contains('name', 'student'))
+                      <li class="group">
+                        <a href="{{ route('dashboard') }}"
+                          class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Dashboard</a>
+                      </li>
+                    @endif
                     <div class="relative flex flex-col items-center">
                       <button id="dropdownBtn" class="h-[40px] w-[40px] overflow-hidden rounded-full bg-sky-400 p-1"
                         onclick="">
@@ -64,10 +64,6 @@
                     <li class="group">
                       <a href="{{ route('login.index') }}"
                         class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Login</a>
-                    </li>
-                    <li class="group">
-                      <a href="{{ route('register.index') }}"
-                        class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Register</a>
                     </li>
                   @endauth
                 </ul>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\auth;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -20,44 +20,12 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'email'    => ['required', 'email'],
             'password' => ['required'],
+            'nis_nip'  => ['required', 'numeric']
         ]);
 
         if (Auth::attempt($credentials)) {
-            if ($request->has('nis')) {
-                $request->validate([
-                    'nis' => ['numeric'],
-                ]);
-
-                $siswa = Siswa::where('nis', $request->nis)->first();
-
-                if (!$siswa) {
-                    return back()
-                    ->withErrors(['nis' => 'The nis field do not match our records.'])
-                    ->onlyInput('email', 'nis');
-                }
-
-                $request->session()->regenerate();
-                return redirect()->intended(route('home'));
-            }
-
-            if ($request->has('nip')) {
-                $request->validate([
-                    'nis' => ['numeric'],
-                ]);
-
-                $guru = Guru::where('nip', $request->nip)->first();
-
-                if (!$guru) {
-                    return back()
-                    ->withErrors(['nip' => 'The nip field do not match our records.'])
-                    ->onlyInput('email', 'nip');
-                }
-
-                $request->session()->regenerate();
-                return redirect()->intended(route('home'));
-            }
 
             $request->session()->regenerate();
             return redirect()->intended(route('dashboard'));

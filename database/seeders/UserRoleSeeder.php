@@ -33,36 +33,31 @@ class UserRoleSeeder extends Seeder
 
         // create users
         $adminUser = User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
+            'name'    => 'Admin',
+            'email'   => 'admin@gmail.com',
+            'nis_nip' => '123456',
         ]);
         $adminUser->roles()->attach($adminRole);
 
         $studentUser = User::factory()->create([
-            'name' => 'rama',
-            'email' => 'rama@gmail.com',
+            'name'    => 'rama',
+            'email'   => 'rama@gmail.com',
+            'nis_nip' => '3424',
         ]);
         $studentUser->roles()->attach($studentRole);
-        $studentUser->siswa()->create([
-            'nis' => '123456',
-        ]);
 
         $studentCouncilUser = User::factory()->create([
-            'name' => 'osis',
-            'email' => 'osis@gmail.com',
-        ]);
-        $studentCouncilUser->siswa()->create([
-            'nis' => '102192',
+            'name'    => 'osis',
+            'email'   => 'osis@gmail.com',
+            'nis_nip' => '123414',
         ]);
         $studentCouncilUser->roles()->attach($studentCouncilRole);
 
 
         $ekskulUser = User::factory()->create([
-            'name' => 'ekskul',
-            'email' => 'ekskul@gmail.com',
-        ]);
-        $ekskulUser->siswa()->create([
-            'nis' => '102193',
+            'name'    => 'ekskul',
+            'email'   => 'ekskul@gmail.com',
+            'nis_nip' => '2342',
         ]);
         $ekskulUser->roles()->attach($ekskulRole);
 
@@ -70,9 +65,7 @@ class UserRoleSeeder extends Seeder
         $teacherUser = User::factory()->create([
             'name' => 'guru',
             'email' => 'guru@gmail.com',
-        ]);
-        $teacherUser->guru()->create([
-            'nip' => '907576',
+            'nis_nip' => '3425',
         ]);
         $teacherUser->roles()->attach($teacherRole);
     }

@@ -23,8 +23,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'nis',
-        'nip',
+        'nis_nip',
         'password',
     ];
 
@@ -45,18 +44,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'password'          => 'hashed',
     ];
-
-    public function siswa(): HasOne
-    {
-        return $this->hasOne(Siswa::class);
-    }
-
-    public function guru(): HasOne
-    {
-        return $this->hasOne(Guru::class);
-    }
 
     public function roles(): BelongsToMany
     {

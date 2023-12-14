@@ -20,18 +20,10 @@
             @enderror
           </div>
           <div class="mb-4">
-            <label for="nis" class="mb-2 block text-sm font-bold text-gray-700">NIS</label>
-            <input type="text" id="nis" name="nis" value="{{ old('nis') }}"
+            <label for="nis_nip" class="mb-2 block text-sm font-bold text-gray-700">NIS / NIP</label>
+            <input type="text" id="nis_nip" name="nis_nip" value="{{ old('nis_nip') }}"
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
-            @error('nis')
-              <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
-            @enderror
-          </div>
-          <div class="mb-4">
-            <label for="nip" class="mb-2 block text-sm font-bold text-gray-700">NIP</label>
-            <input type="text" id="nip" name="nip" value="{{ old('nip') }}"
-              class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
-            @error('nip')
+            @error('nis_nip')
               <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
             @enderror
           </div>
