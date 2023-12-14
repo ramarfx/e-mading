@@ -19,7 +19,7 @@ class BookmarkController extends Controller
 
     public function create()
     {
-        
+
     }
 
     public function destroy()

@@ -29,6 +29,6 @@ class Post extends Model
 
     public function bookmarks()
     {
-        return $this->hasMany(Bookmark::class);
+        return $this->belongsToMany(Bookmark::class);
     }
 }
