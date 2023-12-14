@@ -8,10 +8,10 @@ toggleButtons.forEach(function (toggleBtn) {
 });
 
 //bookmark
-const bookmarkButtons  = document.querySelectorAll('.fa-bookmark');
+const bookmarkButtons = document.querySelectorAll('.fa-bookmark');
 
-bookmarkButtons.forEach((bookmarkBtn) =>{
-    bookmarkBtn.addEventListener('click', ()=>{
+bookmarkButtons.forEach((bookmarkBtn) => {
+    bookmarkBtn.addEventListener('click', () => {
         bookmarkBtn.classList.toggle('fa-solid');
         bookmarkBtn.classList.toggle('fa-regular');
     })
@@ -21,9 +21,12 @@ bookmarkButtons.forEach((bookmarkBtn) =>{
 const dropdownButtons = document.getElementById('dropdownBtn');
 const dropdownContent = document.getElementById('dropdownContent');
 
-dropdownButtons.addEventListener('click', ()=>{
+dropdownButtons.addEventListener('click', () => {
     dropdownContent.classList.toggle('show');
 })
 
-//delete button
-// confirm()
+// Fungsi untuk menampilkan/sembunyikan modal
+function toggleModal(id) {
+    const modal = document.getElementById(`userRoleModal-${ id }`);
+    modal.classList.toggle('hidden');
+}

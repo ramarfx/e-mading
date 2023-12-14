@@ -43,7 +43,7 @@
                           <li><a href=""
                               class="flex items-center gap-3 text-base text-secondary hover:text-primary"><i
                                 class="fa-solid fa-user"></i>profil</a></li>
-                          <li><a href=""
+                          <li><a href="{{ route('bookmark.index') }}"
                               class="flex items-center gap-3 text-base text-secondary hover:text-primary"><i
                                 class="fa-solid fa-bookmark"></i> favorit saya</a></li>
                           <li><a href=""

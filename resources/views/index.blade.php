@@ -56,9 +56,11 @@
                   <p class="text-sm text-secondary">{{ $post->user->name }}</p>
                 </div>
                 <div class="flex gap-5">
-                  <a href="{{ route('post.edit', $post) }}">
-                    <i class="fa-regular fa-bookmark scale-150 text-primary"></i>
-                  </a>
+                  <form action="{{ route('bookmark.store', $post) }}" method="post">
+                    <button type="submit">
+                      <i class="fa-regular fa-bookmark scale-150 text-primary"></i>
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>

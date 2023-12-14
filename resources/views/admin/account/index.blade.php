@@ -4,110 +4,70 @@
   <div class="flex">
     @include('components.sidebar')
 
-    <div class="flex-1 p-8">
-        {{-- section admin start --}}
-        <section id="admin">
-            <div class="w-full flex items-center justify-between gap-3">
-                <button class="flex items-center gap-2">
-                    <i class="fa-solid fa-caret-down text-secondary"></i>
-                    <p class="text-lg font-semibold text-secondary">Admin</p>
-                </button>
-                <div class="w-full h-px bg-secondary"></div>
-            </div>
-            <div class="grid grid-cols-5 gap-5 my-5">
-                @foreach ($filteredUsers['admin'] as $admin)
-                  <div class="flex flex-col items-center justify-center rounded border p-4">
-                    <h1 class="overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold">{{ $admin->name }}</h1>
-                    <p class="my-2 text-sm text-primary">{{ $admin->roles->first()->name }}</p>
-                    <p class="w-full rounded-sm bg-primary py-2 text-center text-white">ubah role</p>
-                  </div>
-                @endforeach
-              </div>
-        </section>
-        {{-- section admin end --}}
+    <div class="min-h-screen flex-1 p-8">
+      <div class="overflow-x-auto">
+        <table class="table min-w-full table-auto border-collapse rounded-md bg-white shadow-lg">
+          <thead class="border bg-primary text-white">
+            <tr>
+              <th class="border border-gray-300 px-4 py-2">Username</th>
+              <th class="border border-gray-300 px-4 py-2">Email</th>
+              <th class="border border-gray-300 px-4 py-2">Role</th>
+              <th class="border border-gray-300 px-4 py-2">Ganti role</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if ($users->count())
+              <tr>
+                <td class="border border-gray-300 px-4 py-2">{{ $users[0]->name }}</td>
+                <td class="border border-gray-300 px-4 py-2">{{ $users[0]->email }}</td>
+                <td class="border border-gray-300 px-4 py-2">{{ $users[0]->roles->first()->name }}</td>
+                <td class="border border-gray-300 px-4 py-2">
+                  <p class="text-red-500">Role admin tidak dapat diubah</p>
+                </td>
+              </tr>
+            @endif
+            @foreach ($users->skip(1) as $user)
+              <tr>
+                <td class="border border-gray-300 px-4 py-2">{{ $user->name }}</td>
+                <td class="border border-gray-300 px-4 py-2">{{ $user->email }}</td>
+                <td class="border border-gray-300 px-4 py-2">{{ $user->roles->first()->name }}</td>
+                <td class="border border-gray-300 px-4 py-2">
+                  <button onclick="toggleModal({{ $user->id }})"
+                    class="rounded bg-blue-500 px-2 py-1 text-white hover:bg-blue-700">Ganti</button>
 
-        {{-- section teacher start --}}
-        <section id="teacher">
-            <div class="w-full flex items-center justify-between gap-3">
-                <button class="flex items-center gap-2">
-                    <i class="fa-solid fa-caret-down text-secondary"></i>
-                    <p class="text-lg font-semibold text-secondary">Guru</p>
-                </button>
-                <div class="w-full h-px bg-secondary"></div>
-            </div>
-            <div class="grid grid-cols-5 gap-5 my-5">
-                @foreach ($filteredUsers['teacher'] as $teacher)
-                  <div class="flex flex-col items-center justify-center rounded border p-4">
-                    <h1 class="overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold">{{ $teacher->name }}</h1>
-                    <p class="my-2 text-sm text-primary">{{ $teacher->roles->first()->name }}</p>
-                    <p class="w-full rounded-sm bg-primary py-2 text-center text-white">ubah role</p>
+                  <div id="userRoleModal-{{ $user->id }}"
+                    class="modal fixed inset-0 z-50 flex hidden items-center justify-center overflow-auto bg-black bg-opacity-50">
+                    <!-- Modal content -->
+                    <form action="{{ route('users.update') }}" method="post" class="w-1/3 rounded-lg bg-white p-6">
+                        @csrf
+                      <div class="mb-4">
+                        <label class="mb-2 block text-sm font-bold text-gray-700" for="selectOption">
+                          Pilih Opsi
+                        </label>
+                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                        <select name="role_id" class="w-full rounded border border-gray-300 px-3 py-2 outline-none">
+                          @foreach ($roles->skip(1) as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                      <div class="flex justify-end">
+                        <button type="submit" class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
+                          Submit
+                        </button>
+                        <button type="button" class="ml-2 rounded bg-gray-300 px-4 py-2 font-bold text-gray-800 hover:bg-gray-400"
+                          onclick="toggleModal({{ $user->id }})">
+                          Tutup
+                        </button>
+                      </div>
+                    </form>
                   </div>
-                @endforeach
-              </div>
-        </section>
-        {{-- section teacher end --}}
-
-        {{-- section studentCouncil start --}}
-        <section id="studentCouncil">
-            <div class="w-full flex items-center justify-between gap-3">
-                <button class="flex items-center gap-2">
-                    <i class="fa-solid fa-caret-down text-secondary"></i>
-                    <p class="text-lg font-semibold text-secondary">Osis </p>
-                </button>
-                <div class="w-full h-px bg-secondary"></div>
-            </div>
-            <div class="grid grid-cols-5 gap-5 my-5">
-                @foreach ($filteredUsers['student_council'] as $studentCouncil)
-                  <div class="flex flex-col items-center justify-center rounded border p-4">
-                    <h1 class="overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold">{{ $studentCouncil->name }}</h1>
-                    <p class="my-2 text-sm text-primary">{{ $studentCouncil->roles->first()->name }}</p>
-                    <p class="w-full rounded-sm bg-primary py-2 text-center text-white">ubah role</p>
-                  </div>
-                @endforeach
-              </div>
-        </section>
-        {{-- section admin end --}}
-
-        {{-- section admin start --}}
-        <section id="admin">
-            <div class="w-full flex items-center justify-between gap-3">
-                <button class="flex items-center gap-2">
-                    <i class="fa-solid fa-caret-down text-secondary"></i>
-                    <p class="text-lg font-semibold text-secondary  whitespace-nowrap">Ketua Ekstrakulikuler</p>
-                </button>
-                <div class="w-full h-px bg-secondary"></div>
-            </div>
-            <div class="grid grid-cols-5 gap-5 my-5">
-                @foreach ($filteredUsers['ekskul'] as $ekskul)
-                  <div class="flex flex-col items-center justify-center rounded border p-4">
-                    <h1 class="overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold">{{ $ekskul->name }}</h1>
-                    <p class="my-2 text-sm text-primary">{{ $ekskul->roles->first()->name }}</p>
-                    <p class="w-full rounded-sm bg-primary py-2 text-center text-white">ubah role</p>
-                  </div>
-                @endforeach
-              </div>
-        </section>
-        {{-- section admin end --}}
-        {{-- section admin start --}}
-        <section id="students">
-            <div class="w-full flex items-center justify-between gap-3">
-                <button class="flex items-center gap-2">
-                    <i class="fa-solid fa-caret-down text-secondary"></i>
-                    <p class="text-lg font-semibold text-secondary whitespace-nowrap">Siswa Biasa</p>
-                </button>
-                <div class="w-full h-px bg-secondary"></div>
-            </div>
-            <div class="grid grid-cols-5 gap-5 my-5">
-                @foreach ($filteredUsers['student'] as $student)
-                  <div class="flex flex-col items-center justify-center rounded border p-4">
-                    <h1 class="overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold">{{ $student->name }}</h1>
-                    <p class="my-2 text-sm text-primary">{{ $student->roles->first()->name }}</p>
-                    <p class="w-full rounded-sm bg-primary py-2 text-center text-white">ubah role</p>
-                  </div>
-                @endforeach
-              </div>
-        </section>
-        {{-- section admin end --}}
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
 
     </div>
   </div>

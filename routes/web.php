@@ -2,13 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\auth\LogoutController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\post\PostController;
 use App\Http\Controllers\admin\post\AcceptPostController;
+use App\Http\Controllers\user\BookmarkController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +40,14 @@ Route::middleware(['auth', 'post.crud'])->group(function () {
     // DashboardController
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+    Route::post('/users', [UsersController::class, 'update'])->name('users.update');
     // Post routes
     Route::resource('/post', PostController::class);
     Route::patch('/post/{post}/accept', [AcceptPostController::class, '__invoke'])->name('post.accept');
+
+    //route bookmarks
+    Route::get('/bookmark', [BookmarkController::class, 'index'])->name('bookmark.index');
+    Route::post('/bookmark', [BookmarkController::class, 'store'])->name('bookmark.store');
 });
 
 

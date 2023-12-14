@@ -21,10 +21,12 @@ class PostController extends Controller
     {
         $currentUser = auth()->user();
         $query       = Post::with('user')
-                        ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')");
+                        ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')")
+                        ->latest();
 
         if ($currentUser->roles->contains('name', 'admin')) {
             $posts = $query->get();
+            $myPost = $query->whereBelongsTo($currentUser)->get();
         } else {
             $posts = $query->whereBelongsTo($currentUser)->get();
         }

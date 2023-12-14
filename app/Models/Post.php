@@ -27,13 +27,8 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function scopeFilter($query, array $filters)
+    public function bookmarks()
     {
-        $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->where(function ($query) use ($search) {
-                $query->where('title', 'like', '%' . $search . '%')
-                    ->orWhere('body', 'like', '%' . $search . '%');
-            });
-        });
+        return $this->hasMany(Bookmark::class);
     }
 }

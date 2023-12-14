@@ -14,13 +14,13 @@
               <div class="relative w-full bg-primary">
                 @include('components.media')
 
-                <div class="absolute left-4 top-3">
+                <div class="absolute left-4 top-3 flex flex-wrap gap-1">
                   <span class="rounded-md bg-red-500 px-2 py-1 text-xs text-white">{{ $post->priority_level }}</span>
                   <span class="top-3 rounded-md bg-primary px-2 py-1 text-xs text-white">{{ $post->category }}</span>
                   @if ($post->is_accept)
-                    <span class=" top-3 rounded-md bg-green-500 px-2 py-1 text-xs text-white">disetujui</span>
+                    <span class="top-3 rounded-md bg-green-500 px-2 py-1 text-xs text-white">disetujui</span>
                   @else
-                    <span class=" top-3 rounded-md bg-yellow-300 px-2 py-1 text-xs text-yellow-900">menunggu
+                    <span class="top-3 rounded-md bg-yellow-300 px-2 py-1 text-xs text-yellow-900">menunggu
                       persetujuan</span>
                   @endif
                 </div>
@@ -37,7 +37,8 @@
                   <div class="flex items-center gap-2">
                     <div class="h-5 w-5 rounded-full bg-primary"></div>
                     <p class="text-sm text-secondary">{{ $post->user->name }}</p>
-                    <p class="text-xs text-orange-800 p-0.5 bg-orange-200 rounded">{{ $post->user->roles->first()->name }}</p>
+                    <p class="rounded bg-orange-200 p-0.5 text-xs text-orange-800">{{ $post->user->roles->first()->name }}
+                    </p>
                   </div>
                   <div class="flex gap-5">
                     <a href="{{ route('post.edit', $post) }}">
@@ -50,6 +51,7 @@
                         <i class="fa-solid fa-trash cursor-pointer hover:text-red-500"></i>
                       </button>
                     </form>
+
                     @if (
                         !$post->is_accept &&
                             auth()->user()->roles->contains('name', 'admin'))
