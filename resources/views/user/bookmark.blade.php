@@ -2,12 +2,12 @@
 
 @section('container')
   <div class="container">
-    <div class="flex flex-wrap p-8">
+    <div class="flex flex-wrap p-4 lg:p-8">
       <div class="min-h-screen w-full">
         @include('components.search')
 
         <h1 class="text-2xl font-bold my-5">Bookmark mu</h1>
-        <div class="grid grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
 
           @foreach ($posts as $post)
           <div class="flex flex-col">

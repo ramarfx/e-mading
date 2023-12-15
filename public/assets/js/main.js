@@ -25,8 +25,16 @@ dropdownButtons.addEventListener('click', () => {
     dropdownContent.classList.toggle('show');
 })
 
-// Fungsi untuk menampilkan/sembunyikan modal
+// Fungsi  modal
 function toggleModal(id) {
     const modal = document.getElementById(`userRoleModal-${ id }`);
     modal.classList.toggle('hidden');
 }
+
+//search bar
+const searchBtn = document.getElementById('searchBtn');
+const searchBy = document.getElementById('searchBy');
+
+searchBtn.addEventListener('click', () => {
+    searchBy.classList.toggle('hidden');
+})

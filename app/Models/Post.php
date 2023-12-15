@@ -28,7 +28,7 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function bookmarks()
+    public function bookmarks() : BelongsToMany
     {
         return $this->belongsToMany(User::class, 'bookmarks');
     }
@@ -37,5 +37,10 @@ class Post extends Model
     {
         $this->published_at = $publishDate;
         $this->save();
+    }
+
+    public function viewedBy() : BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'post_views')->withTimestamps();
     }
 }

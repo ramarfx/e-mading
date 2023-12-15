@@ -24,7 +24,7 @@
           </div>
           <div class="flex flex-col rounded-md bg-white p-4">
             <h3 class="font-semibold text-xs lg:text-lg text-center">kunjungan</h3>
-            <p class="text-base lg:text-2xl font-medium text-primary text-center">800</p>
+            <p class="text-base lg:text-2xl font-medium text-primary text-center"></p>
           </div>
         </div>
 

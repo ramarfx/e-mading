@@ -43,7 +43,7 @@
 
           <div class="mb-4">
             <label for="media" class="mb-2 block text-sm font-bold text-gray-700">Upload Gambar/Video</label>
-            <input type="file" id="media" name="media"
+            <input type="file" id="media" name="media" min="{{ Carbon\Carbon::now()->format('Y-m-d\TH:i') }}"
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
           </div>
 
@@ -58,9 +58,9 @@
               class="w-full rounded border px-3 py-2 text-gray-700">
           </div>
 
-          <div class="mb-6 text-center w-full">
+          <div class="mb-6 w-full text-center">
             <button type="submit"
-              class="rounded w-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none">
+              class="w-full rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none">
               Posting</button>
           </div>
         </form>

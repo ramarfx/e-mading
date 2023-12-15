@@ -29,6 +29,8 @@ class UsersController extends Controller
         ->get();
         $roles = Role::all();
 
+        return $users;
+
         return view('admin.account.index', compact('users', 'roles'));
     }
 

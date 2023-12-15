@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin\post;
 
+use Carbon\Carbon;
 use App\Models\Post;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -20,15 +21,31 @@ class PostController extends Controller
     public function index()
     {
         $currentUser = auth()->user();
-        $query       = Post::with('user')
+        $category = request('category');
+        $searchBy = request('search_by');
+
+        $query = Post::with('user')
             ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')")
-            ->latest();
+            ->latest()
+            ->when($category, function ($query) use ($category) {
+                return $query->where('category', $category);
+            })
+            ->when($searchBy, function ($query) use ($searchBy) {
+                return $query->when($searchBy == 'title', function ($query) {
+                    return $query->where('title', 'like', '%' . request('query') . '%');
+                })
+            ->when($searchBy == 'author', function ($query) {
+                return $query->whereHas('user', function ($query) {
+                    return $query->where('name', 'like', '%' . request('query') . '%');
+                });
+            })
+            ->when($searchBy == 'date', function ($query) {
+                return $query->whereDate('created_at', request('query'));
+            });
+            });
 
         $posts = $query->whereBelongsTo($currentUser)->get();
 
-        if (request('search')) {
-            $posts = $query->where('title', 'like', '%' . request('search') . '%')->get();
-        }
 
         return view('admin.post.index', compact('posts'));
     }
@@ -53,7 +70,21 @@ class PostController extends Controller
             'priority_level' => ['required', 'string'],
             'media'          => ['nullable', 'file', 'mimes:jpeg,png,gif,webp,mp4,mov,avi,mkv', 'max:20480'],
             'link'           => ['nullable', 'url'],
+            'published_at'   => ['nullable', 'date'],
         ]);
+
+        $publishDate = $request->input('publish_date');
+
+        if($publishDate){
+            $parsedPublishDate = Carbon::parse($publishDate);
+            $validated['published_at'] = $parsedPublishDate ?? null;
+        }else{
+            $validated['published_at'] = Carbon::now();
+        }
+        $parsedPublishDate = Carbon::parse($publishDate);
+        $validated['published_at'] = $parsedPublishDate ?? null;
+
+
 
         if ($request->hasFile('media')) {
             $file = $request->file('media');
@@ -78,6 +109,7 @@ class PostController extends Controller
             $validated['is_accept'] = true;
         }
 
+
         $request->user()->posts()->create($validated);
 
         return to_route('post.index')->with('success', 'Post berhasil disimpan.');
@@ -87,6 +119,11 @@ class PostController extends Controller
      */
     public function show(Post $post): View
     {
+        $user = request()->user();
+        if (!$user->viewedPost->contains($post)) {
+            $user->viewedPost()->attach($post);
+        }
+
         return view('admin.post.show', compact('post'));
     }
 

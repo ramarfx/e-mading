@@ -9,13 +9,30 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $category = request('category');
+        $searchBy = request('search_by');
+
         $query = Post::query()
             ->where('is_accept', true)
-            ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')");
-
-        if (request('search')) {
-            $query->where('title', 'like', '%' . request('search') . '%');
-        }
+            ->where('is_published', true)
+            ->where('published_at', '<=', now())
+            ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')")
+            ->when($category, function ($query) use ($category) {
+                return $query->where('category', $category);
+            })
+            ->when($searchBy, function ($query) use ($searchBy) {
+                return $query->when($searchBy == 'title', function ($query) {
+                    return $query->where('title', 'like', '%' . request('query') . '%');
+                })
+            ->when($searchBy == 'author', function ($query) {
+                return $query->whereHas('user', function ($query) {
+                    return $query->where('name', 'like', '%' . request('query') . '%');
+                });
+            })
+            ->when($searchBy == 'date', function ($query) {
+                return $query->whereDate('created_at', request('query'));
+            });
+            });
 
         $posts = $query->get();
 

@@ -11,14 +11,30 @@ class SubmitPostController extends Controller
 {
     public function index()
     {
-        $query = Post::where('is_accept', false);
+        $category = request('category');
+        $searchBy = request('search_by');
 
-        if(request('search')) {
-            $query->where('title', 'like', '%' . request('search') . '%');
-        }
+        $query = Post::query()
+            ->where('is_accept', false)
+            ->when($category, function ($query) use ($category) {
+                return $query->where('category', $category);
+            })
+            ->when($searchBy, function ($query) use ($searchBy) {
+                return $query->when($searchBy == 'title', function ($query) {
+                    return $query->where('title', 'like', '%' . request('query') . '%');
+                })
+            ->when($searchBy == 'author', function ($query) {
+                return $query->whereHas('user', function ($query) {
+                    return $query->where('name', 'like', '%' . request('query') . '%');
+                });
+            })
+            ->when($searchBy == 'date', function ($query) {
+                return $query->whereDate('created_at', request('query'));
+            });
+            });
 
         $posts = $query->get();
-        
+
         return view('admin.post.submit', compact('posts'));
     }
 

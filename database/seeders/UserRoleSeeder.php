@@ -39,34 +39,42 @@ class UserRoleSeeder extends Seeder
         ]);
         $adminUser->roles()->attach($adminRole);
 
+        User::factory()->create([
+            'name' => 'ayam',
+            'email' => 'admin1@gmail.com',
+            'nis_nip' => '12345',
+        ])->roles()->attach($adminRole);
+
         $studentUser = User::factory()->create([
             'name'    => 'rama',
             'email'   => 'rama@gmail.com',
             'nis_nip' => '3424',
         ]);
-        $studentUser->roles()->attach($studentRole);
+        $studentUser->users()->attach($studentRole);
 
-        $studentCouncilUser = User::factory()->create([
-            'name'    => 'osis',
-            'email'   => 'osis@gmail.com',
-            'nis_nip' => '123414',
-        ]);
-        $studentCouncilUser->roles()->attach($studentCouncilRole);
+        // $studentRole->roles()->attach($studentUser);
 
-
-        $ekskulUser = User::factory()->create([
-            'name'    => 'ekskul',
-            'email'   => 'ekskul@gmail.com',
-            'nis_nip' => '2342',
-        ]);
-        $ekskulUser->roles()->attach($ekskulRole);
+        // $studentCouncilUser = User::factory()->create([
+        //     'name'    => 'osis',
+        //     'email'   => 'osis@gmail.com',
+        //     'nis_nip' => '123414',
+        // ]);
+        // $studentCouncilUser->roles()->attach($studentCouncilRole);
 
 
-        $teacherUser = User::factory()->create([
-            'name' => 'guru',
-            'email' => 'guru@gmail.com',
-            'nis_nip' => '3425',
-        ]);
-        $teacherUser->roles()->attach($teacherRole);
+        // $ekskulUser = User::factory()->create([
+        //     'name'    => 'ekskul',
+        //     'email'   => 'ekskul@gmail.com',
+        //     'nis_nip' => '2342',
+        // ]);
+        // $ekskulUser->roles()->attach($ekskulRole);
+
+
+        // $teacherUser = User::factory()->create([
+        //     'name' => 'guru',
+        //     'email' => 'guru@gmail.com',
+        //     'nis_nip' => '3425',
+        // ]);
+        // $teacherUser->roles()->attach($teacherRole);
     }
 }
