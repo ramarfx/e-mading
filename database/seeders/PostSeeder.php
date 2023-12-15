@@ -63,6 +63,8 @@ class PostSeeder extends Seeder
             'priority_level' => 'biasa',
             'created_at' => now(),
             'updated_at' => now(),
+            'published_at' => now(),
+            'is_published' => true
         ]);
     }
 }

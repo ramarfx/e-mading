@@ -17,64 +17,48 @@ class UserRoleSeeder extends Seeder
         $adminRole = Role::create([
             'name' => 'admin',
         ]);
+        $teacherRole = Role::create([
+            'name' => 'teacher',
+        ]);
+        $studentCouncilRole = Role::create([
+            'name' => 'osis',
+        ]);
         $studentRole = Role::create([
             'name' => 'student',
         ]);
         $ekskulRole = Role::create([
             'name' => 'ekskul',
         ]);
-        $studentCouncilRole = Role::create([
-            'name' => 'student_council',
-        ]);
-        $teacherRole = Role::create([
-            'name' => 'teacher',
-        ]);
-
 
         // create users
-        $adminUser = User::factory()->create([
+        User::factory()->create([
             'name'    => 'Admin',
             'email'   => 'admin@gmail.com',
             'nis_nip' => '123456',
-        ]);
-        $adminUser->roles()->attach($adminRole);
-
-        User::factory()->create([
-            'name' => 'ayam',
-            'email' => 'admin1@gmail.com',
-            'nis_nip' => '12345',
         ])->roles()->attach($adminRole);
 
-        $studentUser = User::factory()->create([
+        User::factory()->create([
             'name'    => 'rama',
             'email'   => 'rama@gmail.com',
             'nis_nip' => '3424',
-        ]);
-        $studentUser->users()->attach($studentRole);
+        ])->roles()->attach($studentRole);
 
-        // $studentRole->roles()->attach($studentUser);
+        User::factory()->create([
+            'name'    => 'Riyan putra',
+            'email'   => 'osis@gmail.com',
+            'nis_nip' => '123414',
+        ])->roles()->attach($studentCouncilRole);
 
-        // $studentCouncilUser = User::factory()->create([
-        //     'name'    => 'osis',
-        //     'email'   => 'osis@gmail.com',
-        //     'nis_nip' => '123414',
-        // ]);
-        // $studentCouncilUser->roles()->attach($studentCouncilRole);
+        User::factory()->create([
+            'name'    => 'pradipta arya',
+            'email'   => 'ekskul@gmail.com',
+            'nis_nip' => '2342',
+        ])->roles()->attach($ekskulRole);
 
-
-        // $ekskulUser = User::factory()->create([
-        //     'name'    => 'ekskul',
-        //     'email'   => 'ekskul@gmail.com',
-        //     'nis_nip' => '2342',
-        // ]);
-        // $ekskulUser->roles()->attach($ekskulRole);
-
-
-        // $teacherUser = User::factory()->create([
-        //     'name' => 'guru',
-        //     'email' => 'guru@gmail.com',
-        //     'nis_nip' => '3425',
-        // ]);
-        // $teacherUser->roles()->attach($teacherRole);
+        User::factory()->create([
+            'name' => 'veranika',
+            'email' => 'guru@gmail.com',
+            'nis_nip' => '3425',
+        ])->roles()->attach($teacherRole);
     }
 }

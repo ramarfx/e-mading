@@ -14,12 +14,14 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->call(function () {
-            $posts = Post::where('published_at', '<=', now())->whereNull('is_published')->get();
+            $posts = Post::where('published_at', '<=', now())
+                ->where('is_published', false)
+                ->get();
 
-            foreach ($posts as $post) {
+            $posts->each(function ($post) {
                 $post->update(['is_published' => true]);
                 info('Post dipublikasikan: ' . $post->title);
-            }
+            });
         })->everyMinute(); // Atur sesuai kebutuhan jadwal
     }
 

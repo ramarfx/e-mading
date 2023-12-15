@@ -31,6 +31,7 @@
                 <a href="{{ route('post.show', $post) }}" class="block truncate text-base font-semibold">
                   {{ $post->title }}
                 </a>
+                <p class="text-sm text-red-500">{{ $post->published_at }}</p>
                 <p class="text-xs font-semibold leading-8 text-primary">
                   {{ $post->created_at->diffForHumans() }}</p>
                 <div class="flex items-center justify-between border-t py-3">
