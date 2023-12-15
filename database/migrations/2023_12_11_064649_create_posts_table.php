@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('media_path')->default('placeholder');
             $table->string('link')->nullable();
             $table->boolean('is_accept')->default(false);
-            $table->dateTime('publish_at')->nullable();
+            $table->dateTime('published_at')->nullable();
+            $table->boolean('is_published')->default(false);
             $table->timestamps();
         });
     }

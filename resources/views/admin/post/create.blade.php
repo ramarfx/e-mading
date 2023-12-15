@@ -53,8 +53,8 @@
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
           </div>
           <div class="mb-4">
-            <label for="publish_at" class="mb-2 block text-sm font-bold text-gray-700">Atur jadwal (opsional)</label>
-            <input type="datetime-local" name="publish_at" id="publish_at" value="{{ old('publish_at') }}"
+            <label for="published_at" class="mb-2 block text-sm font-bold text-gray-700">Atur jadwal (opsional)</label>
+            <input type="datetime-local" name="published_at" id="published_at" value="{{ old('published_at') }}"
               class="w-full rounded border px-3 py-2 text-gray-700">
           </div>
 

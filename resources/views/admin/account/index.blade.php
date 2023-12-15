@@ -36,9 +36,9 @@
                     class="rounded bg-blue-500 px-2 py-1 text-white hover:bg-blue-700">Ganti</button>
 
                   <div id="userRoleModal-{{ $user->id }}"
-                    class="modal fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-black bg-opacity-50">
+                    class="modal fixed inset-0 z-50 flex hidden items-center justify-center overflow-auto bg-black bg-opacity-50">
                     <!-- Modal content -->
-                    <form action="{{ route('users.update') }}" method="post" class="w-1/3 rounded-lg bg-white p-6">
+                    <form action="{{ route('users.update') }}" method="post" class="w-1/3 absolute rounded-lg bg-white p-6">
                         @csrf
                       <div class="mb-4">
                         <label class="mb-2 block text-sm font-bold text-gray-700" for="selectOption">

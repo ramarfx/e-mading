@@ -20,7 +20,7 @@ class Post extends Model
         'media_type',
         'is_accept',
         'link',
-        'publish_at',
+        'published_at',
     ];
 
     public function user()
@@ -31,5 +31,11 @@ class Post extends Model
     public function bookmarks()
     {
         return $this->belongsToMany(User::class, 'bookmarks');
+    }
+
+    public function schedulePost(\DateTimeInterface $publishDate)
+    {
+        $this->published_at = $publishDate;
+        $this->save();
     }
 }
