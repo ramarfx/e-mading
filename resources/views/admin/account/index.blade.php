@@ -1,12 +1,12 @@
 @extends('layouts.main')
 
 @section('container')
-  <div class="flex">
+  <div class="flex flex-col lg:flex-row">
     @include('components.sidebar')
 
     <div class="min-h-screen flex-1 p-8">
       <div class="overflow-x-auto">
-        <table class="table min-w-full table-auto border-collapse rounded-md bg-white shadow-lg">
+        <table class="table w-full table-auto border-collapse rounded-md bg-white shadow-lg text-sm lg:text-base">
           <thead class="border bg-primary text-white">
             <tr>
               <th class="border border-gray-300 px-4 py-2">Username</th>
@@ -36,7 +36,7 @@
                     class="rounded bg-blue-500 px-2 py-1 text-white hover:bg-blue-700">Ganti</button>
 
                   <div id="userRoleModal-{{ $user->id }}"
-                    class="modal fixed inset-0 z-50 flex hidden items-center justify-center overflow-auto bg-black bg-opacity-50">
+                    class="modal fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-black bg-opacity-50">
                     <!-- Modal content -->
                     <form action="{{ route('users.update') }}" method="post" class="w-1/3 rounded-lg bg-white p-6">
                         @csrf

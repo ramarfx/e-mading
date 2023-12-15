@@ -24,11 +24,10 @@ class PostController extends Controller
             ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')")
             ->latest();
 
-        if ($currentUser->roles->contains('name', 'admin')) {
-            $posts = $query->get();
-            $myPost = $query->whereBelongsTo($currentUser)->get();
-        } else {
-            $posts = $query->whereBelongsTo($currentUser)->get();
+        $posts = $query->whereBelongsTo($currentUser)->get();
+
+        if (request('search')) {
+            $posts = $query->where('title', 'like', '%' . request('search') . '%')->get();
         }
 
         return view('admin.post.index', compact('posts'));
@@ -74,6 +73,10 @@ class PostController extends Controller
 
         $validated['media_path'] = $path ?? null;
         $validated['media_type'] = $mediaType ?? null;
+
+        if (auth()->user()->role === 'admin') {
+            $validated['is_accept'] = true;
+        }
 
         $request->user()->posts()->create($validated);
 

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-  <div class="container mx-auto">
+  <div class="container mx-auto flex-col lg:flex-row">
     <div class="mt-32 flex items-center justify-center">
       <div class="mx-auto w-full max-w-3xl">
         <form action="{{ route('post.update', $post) }}" method="post" enctype="multipart/form-data"

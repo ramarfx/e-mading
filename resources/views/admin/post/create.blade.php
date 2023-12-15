@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-  <div class="container mx-auto">
+  <div class="container mx-auto flex-col lg:flex-row">
     <div class="mt-32 flex items-center justify-center">
       <div class="mx-auto w-full max-w-3xl">
         <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data"
@@ -58,9 +58,9 @@
               class="w-full rounded border px-3 py-2 text-gray-700">
           </div>
 
-          <div class="mb-6 text-center">
+          <div class="mb-6 text-center w-full">
             <button type="submit"
-              class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none">
+              class="rounded w-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none">
               Posting</button>
           </div>
         </form>

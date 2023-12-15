@@ -29,9 +29,10 @@
   <section class="py-12">
     <div class="container mx-auto px-4">
       <h2 class="mb-6 text-center text-2xl font-bold">Pengumuman Terbaru</h2>
-      <!-- List Posting -->
+      <div class="flex justify-center">
+        @include('components.search')
+      </div>
       <div class="grid grid-cols-2 gap-8 md:grid-cols-2 lg:grid-cols-4">
-        <!-- Contoh Posting -->
         @foreach ($posts as $post)
           <div class="flex flex-col">
             <div class="relative w-full bg-primary">

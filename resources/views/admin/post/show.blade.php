@@ -3,7 +3,7 @@
 @section('container')
   <div class="container">
     <div class="mt-32">
-      <div class="mx-auto flex h-full min-h-screen w-full max-w-7xl gap-5 rounded-lg border bg-white p-6">
+      <div class="mx-auto flex flex-col lg:flex-row h-full min-h-screen w-full max-w-7xl gap-5 rounded-lg border bg-white p-6">
         <div class="mb-4 w-full basis-80">
           @if ($post->media_path === 'placeholder')
             <img src="{{ asset('assets/img/poster.jpeg') }}">

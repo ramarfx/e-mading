@@ -6,9 +6,8 @@
       <div class="min-h-screen w-full">
         @include('components.search')
 
+        <h1 class="text-2xl font-bold my-5">Bookmark mu</h1>
         <div class="grid grid-cols-4 gap-4">
-          {{-- <p>{{ $posts[0]->title }}</p> --}}
-          {{-- {{ dd($posts) }} --}}
 
           @foreach ($posts as $post)
           <div class="flex flex-col">

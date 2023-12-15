@@ -9,9 +9,16 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $posts = Post::where('is_accept', true)
-            ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')")
-            ->paginate(4);
+        $query = Post::query()
+            ->where('is_accept', true)
+            ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')");
+
+        if (request('search')) {
+            $query->where('title', 'like', '%' . request('search') . '%');
+        }
+
+        $posts = $query->get();
+
         return view('index', compact('posts'));
     }
 }

@@ -1,21 +1,22 @@
 <div class="flex-shrink-0 bg-white">
   <div class="p-4">
     <h2 class="mb-4 text-2xl font-bold">Dashboard</h2>
-    <ul class="space-y-2">
+    <ul class="space-y-2 flex
+     items-center justify-evenly lg:block">
       <li><a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
             class="fa-solid fa-table-columns"></i>
-          Dashboard</a></li>
+          <span class="hidden lg:block">Dashboard</span></a></li>
       <li><a href="{{ route('post.index') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
             class="fa-regular fa-file"></i>
-          postingan mu</a>
+          <span class="hidden lg:block">postingan mu</span></a>
       </li>
       @if (auth()->user()->roles->contains('name', 'admin'))
         <li><a href="{{ route('users.index') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
               class="fa-regular fa-user"></i>
-            List User</a>
+            <span class="hidden lg:block">List User</span></a>
         </li>
-        <li><a href="{{ route('post.index') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
-              class="fa-regular fa-square-check"></i> submit post</a></li>
+        <li><a href="{{ route('submit.index') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
+              class="fa-regular fa-square-check"></i><span class="hidden lg:block"> submit post</span></a></li>
       @endif
     </ul>
 

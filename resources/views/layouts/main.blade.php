@@ -22,6 +22,7 @@
 
 @include('components.footer')
 
+<script type="module" src="{{ mix('resources/js/app.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 
