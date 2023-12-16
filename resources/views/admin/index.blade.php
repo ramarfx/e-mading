@@ -3,7 +3,7 @@
 
 
 @section('container')
-  <div class="flex bg-gray-100 min-h-screen flex-col lg:flex-row">
+  <div class="flex min-h-screen flex-col bg-gray-100 lg:flex-row">
 
     @include('components.sidebar')
 
@@ -14,25 +14,57 @@
       {{-- Content Area --}}
       <div class="grid grid-cols-1 gap-2 lg:gap-5">
         <div class="grid grid-cols-3 gap-6 lg:gap-10">
-          <div class="flex flex-col justify-center items-center rounded-md bg-white p-4">
-            <h3 class="font-semibold text-xs lg:text-lg text-center">Jumlah User</h3>
-            <p class="text-base lg:text-2xl font-medium text-primary text-center">{{ $users }}</p>
+          <div class="flex flex-col items-center justify-center rounded-md bg-white p-4">
+            <h3 class="text-center text-xs font-semibold lg:text-lg">Jumlah User</h3>
+            <p class="text-center text-base font-medium text-primary lg:text-2xl">{{ $users }}</p>
           </div>
           <div class="flex flex-col rounded-md bg-white p-4">
-            <h3 class="font-semibold text-xs lg:text-lg text-center">Jumlah Postingan</h3>
-            <p class="text-base lg:text-2xl font-medium text-primary text-center">{{ $posts }}</p>
+            <h3 class="text-center text-xs font-semibold lg:text-lg">Jumlah Postingan</h3>
+            <p class="text-center text-base font-medium text-primary lg:text-2xl">{{ $posts }}</p>
           </div>
           <div class="flex flex-col rounded-md bg-white p-4">
-            <h3 class="font-semibold text-xs lg:text-lg text-center">kunjungan</h3>
-            <p class="text-base lg:text-2xl font-medium text-primary text-center"></p>
+            <h3 class="text-center text-xs font-semibold lg:text-lg">Jumlahkunjungan</h3>
+            <p class="text-center text-base font-medium text-primary lg:text-2xl">{{ $totalViews }}</p>
           </div>
         </div>
-
         <div class="flex w-full flex-col rounded-md bg-white p-4">
-          <h2 class="mb-2 w-full h-full text-lg font-semibold">Statistik</h2>
+          <a href="{{ route('dashboard.print', $period) }}" class="flex items-center justify-center gap-3"><i
+              class="fa-solid fa-file-pdf"></i> Cetak
+            PDF</a>
+        </div>
+        <div class="relative flex w-full flex-col rounded-md bg-white p-4">
+          <h2 class="mb-2 h-full w-full text-lg font-semibold">Statistik</h2>
+          <div class="group absolute right-5 top-3 text-xl">
+            <button id="periodBtn" type="button">
+              <i class="fa-solid fa-ellipsis group-hover:text-primary"></i>
+            </button>
 
-          <canvas class="max-w-full" id="myChart">
-          </canvas>
+            <div id="periodContent" class="hidden">
+              <form method="GET" class="absolute right-0 top-4 z-10 border bg-white">
+                <select name="period" id="period" class="text-sm">
+                  <option selected disabled>Periode :</option>
+                  <option value="daily">Hari ini</option>
+                  <option value="weekly">minggu ini</option>
+                  <option value="monthly">bulan ini</option>
+                  <option value="yearly">tahun ini</option>
+                </select>
+              </form>
+            </div>
+
+          </div>
+          <div class="flex justify-between border-b">
+            <p class="font-semibold">Judul post</p>
+            <p class="font-semibold">Views</p>
+          </div>
+          @foreach ($periodViews as $post)
+            <div class="flex w-[99%] justify-between border-b py-2">
+              <p>{{ $post->title }}</p>
+              <p>{{ $post->viewed_by_count }}</p>
+            </div>
+          @endforeach
+          <div class="w-full">
+            {{ $periodViews->links() }}
+          </div>
         </div>
 
       </div>

@@ -6,19 +6,19 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 
-class DashboardController extends Controller
+class PdfController extends Controller
 {
-    public function index()
+    /**
+     * Handle the incoming request.
+     */
+    public function __invoke(Request $request)
     {
-        $users = User::count();
+        $users  = User::count();
         $posts  = Post::count();
+        $period = request('period');
 
-        $period = request('period'); // Default ke harian jika tidak ada request
-
-        $totalViews = Post::withCount('viewedBy')->get()->sum('viewed_by_count');
         $periodViews = Post::withCount([
             'viewedBy' => function ($query) use ($period) {
                 switch ($period) {
@@ -43,8 +43,14 @@ class DashboardController extends Controller
                         break;
                 }
             }
-        ])->paginate(1);
+        ])->get();
 
-        return view('admin.index', compact('users', 'posts', 'periodViews', 'totalViews', 'period'));
+        // $total = collect($dailyViews)->sum('viewed_by_count');
+
+        // $pdf = Pdf::loadView('admin.pdf.index', compact('posts', 'users', 'period', 'dailyViews', 'weeklyViews', 'monthlyViews', 'yearlyViews', 'total'));
+        // return $pdf->download('invoice.pdf');
+
+
+        return view('admin.pdf.index', compact('posts', 'users', 'period', 'periodViews'));
     }
 }

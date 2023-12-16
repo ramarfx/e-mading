@@ -1,0 +1,44 @@
+/* Gaya umum */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8; /* Warna latar belakang halaman */
+}
+
+h3{
+    text-align : center;
+}
+
+/* Gaya untuk tabel */
+.table-container {
+    margin: 20px;
+    border: 1px solid #b0c4de; /* Warna garis tepi tabel */
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff; /* Warna latar belakang tabel */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #3f72af; /* Warna latar belakang header */
+    color: #fff; /* Warna teks header */
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #edf2f7; /* Warna latar belakang baris genap */
+}

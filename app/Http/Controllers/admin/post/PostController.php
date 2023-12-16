@@ -34,14 +34,14 @@ class PostController extends Controller
                 return $query->when($searchBy == 'title', function ($query) {
                     return $query->where('title', 'like', '%' . request('query') . '%');
                 })
-            ->when($searchBy == 'author', function ($query) {
-                return $query->whereHas('user', function ($query) {
-                    return $query->where('name', 'like', '%' . request('query') . '%');
-                });
-            })
-            ->when($searchBy == 'date', function ($query) {
-                return $query->whereDate('created_at', request('query'));
-            });
+                    ->when($searchBy == 'author', function ($query) {
+                        return $query->whereHas('user', function ($query) {
+                            return $query->where('name', 'like', '%' . request('query') . '%');
+                        });
+                    })
+                    ->when($searchBy == 'date', function ($query) {
+                        return $query->whereDate('created_at', request('query'));
+                    });
             });
 
         $posts = $query->whereBelongsTo($currentUser)->get();
@@ -75,10 +75,10 @@ class PostController extends Controller
 
         $publishDate = $request->input('publish_date');
 
-        if($publishDate){
+        if ($publishDate) {
             $parsedPublishDate = Carbon::parse($publishDate);
             $validated['published_at'] = $parsedPublishDate ?? null;
-        }else{
+        } else {
             $validated['published_at'] = Carbon::now();
         }
         $parsedPublishDate = Carbon::parse($publishDate);
