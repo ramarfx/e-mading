@@ -6,6 +6,9 @@
       <li><a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
             class="fa-solid fa-table-columns"></i>
           <span class="hidden lg:block">Dashboard</span></a></li>
+      <li><a href="{{ route('dashboard.statistik') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
+            class="fa-solid fa-table-columns"></i>
+          <span class="hidden lg:block">Statistik</span></a></li>
       <li><a href="{{ route('post.index') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
             class="fa-regular fa-file"></i>
           <span class="hidden lg:block">postingan mu</span></a>

@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
@@ -20,7 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $currentUser = auth()->user();
+        $user = auth()->user();
         $category = request('category');
         $searchBy = request('search_by');
 
@@ -44,7 +45,7 @@ class PostController extends Controller
                     });
             });
 
-        $posts = $query->whereBelongsTo($currentUser)->get();
+        $posts = $query->whereBelongsTo($user)->get();
 
 
         return view('admin.post.index', compact('posts'));
@@ -55,7 +56,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create');
+        $userRole = auth()->user()->roles->first()->name;
+
+        return view('admin.post.create', compact('userRole'));
     }
 
     /**
@@ -112,7 +115,7 @@ class PostController extends Controller
 
         $request->user()->posts()->create($validated);
 
-        return to_route('post.index')->with('success', 'Post berhasil disimpan.');
+        return Redirect::route('post.index')->with('success', 'Post berhasil disimpan.');
     }
     /**
      * Display the specified resource.

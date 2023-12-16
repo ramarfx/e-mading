@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('title');
             $table->text('description');
-            $table->enum('category', ['pengumuman', 'event', 'berita', 'ekstrakulikuler']);
+            $table->enum('category', ['pengumuman', 'event', 'artikel', 'ekstrakulikuler']);
             $table->enum('priority_level', ['biasa', 'penting']);
             $table->string('media_type')->default('placeholder');
             $table->string('media_path')->default('placeholder');

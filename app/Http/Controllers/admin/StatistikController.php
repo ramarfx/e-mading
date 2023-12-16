@@ -3,18 +3,19 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 
-class PdfController extends Controller
+class StatistikController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(string $period)
+    public function __invoke(Request $request)
     {
+        $totalViews = Post::withCount('viewedBy')->get()->sum('viewed_by_count');
+        $period     = request('period', 'all');                                    // Default ke harian jika tidak ada request
+
         $periodViews = Post::withCount([
             'viewedBy' => function ($query) use ($period) {
                 switch ($period) {
@@ -40,10 +41,6 @@ class PdfController extends Controller
                 }
             }
         ])->get();
-
-        $total = collect($periodViews)->sum('viewed_by_count');
-
-        $pdf = Pdf::loadView('admin.pdf.index', compact('period', 'periodViews', 'total'));
-        return $pdf->download('invoice.pdf');
+        return view('admin.statistik.index', compact('totalViews', 'periodViews', 'period'));
     }
 }

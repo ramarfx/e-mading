@@ -16,35 +16,12 @@ class DashboardController extends Controller
         $users = User::count();
         $posts  = Post::count();
 
-        $period = request('period'); // Default ke harian jika tidak ada request
-
         $totalViews = Post::withCount('viewedBy')->get()->sum('viewed_by_count');
-        $periodViews = Post::withCount([
-            'viewedBy' => function ($query) use ($period) {
-                switch ($period) {
-                    case 'daily':
-                        $query->where('post_views.created_at', '>=', now()->startOfDay());
-                        break;
+        $topViews = Post::withCount('viewedBy')
+            ->orderBy('viewed_by_count', 'desc')
+            ->take(5)
+            ->get();
 
-                    case 'weekly':
-                        $query->whereBetween('post_views.created_at', [now()->startOfWeek(), now()->endOfWeek()]);
-                        break;
-
-                    case 'monthly':
-                        $query->whereMonth('post_views.created_at', now()->month);
-                        break;
-
-                    case 'yearly':
-                        $query->whereYear('post_views.created_at', now()->year);
-                        break;
-
-                    default:
-                        $query;
-                        break;
-                }
-            }
-        ])->paginate(1);
-
-        return view('admin.index', compact('users', 'posts', 'periodViews', 'totalViews', 'period'));
+        return view('admin.index', compact('users', 'posts', 'totalViews', 'topViews'));
     }
 }

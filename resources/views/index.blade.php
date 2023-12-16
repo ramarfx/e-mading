@@ -58,6 +58,16 @@
                   <p class="text-sm text-secondary">{{ $post->user->name }}</p>
                 </div>
                 <div class="flex gap-5">
+                  @if ($post->bookmarks->isNotEmpty())
+                  <form action="{{ route('bookmark.destroy', $post) }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+                    <button type="submit">
+                      <i class="fa-solid fa-bookmark scale-150 text-primary"></i>
+                    </button>
+                  </form>
+                  @else
                   <form action="{{ route('bookmark.store', $post) }}" method="post">
                     @csrf
                     <input type="hidden" name="post_id" value="{{ $post->id }}">
@@ -65,6 +75,7 @@
                       <i class="fa-regular fa-bookmark scale-150 text-primary"></i>
                     </button>
                   </form>
+                  @endif
                 </div>
               </div>
             </div>

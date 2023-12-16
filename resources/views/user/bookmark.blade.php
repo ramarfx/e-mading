@@ -50,7 +50,9 @@
                   </p>
                 </div>
                 <div class="flex gap-5">
-                    <form action="{{ route('bookmark.store', $post) }}" method="post">
+                    <form action="{{ route('bookmark.destroy', $post) }}" method="post">
+                        @csrf
+                        @method('delete')
                       <button type="submit">
                         <i class="fa-solid fa-bookmark scale-150 text-primary"></i>
                       </button>

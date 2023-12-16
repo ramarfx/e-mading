@@ -12,7 +12,8 @@
           <div class="mb-4">
             <label for="title" class="mb-2 block text-sm font-bold text-gray-700">Judul</label>
             <input type="text" id="title" name="title" required
-              class="w-full rounded border px-3 py-2 leading-tight text-gray-700" value="{{ old('title', $post->title) }}">
+              class="w-full rounded border px-3 py-2 leading-tight text-gray-700"
+              value="{{ old('title', $post->title) }}">
           </div>
           <div class="mb-4">
             <label for="description" class="mb-2 block text-sm font-bold text-gray-700">Description</label>
@@ -28,7 +29,7 @@
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
               <option {{ old('category') == 'pengumuman' ? 'selected' : null }} value="pengumuman">Pengumuman</option>
               <option {{ old('category') == 'event' ? 'selected' : null }} value="event">Event</option>
-              <option {{ old('category') == 'berita' ? 'selected' : null }} value="berita">Berita</option>
+              <option {{ old('category') == 'artikel' ? 'selected' : null }} value="artikel">artikel</option>
               <option {{ old('category') == 'ekstrakulikuler' ? 'selected' : null }} value="ekstrakulikuler">
                 Ekstrakulikuler</option>
             </select>
@@ -56,7 +57,7 @@
           </div>
           <div class="mb-4">
             <label for="publish_at" class="mb-2 block text-sm font-bold text-gray-700">Atur jadwal (opsional)</label>
-            <input type="datetime-local" name="publish_at" id="publish_at" value="{{ $post->publish_at}}"
+            <input type="datetime-local" name="publish_at" id="publish_at" value="{{ $post->publish_at }}"
               class="w-full rounded border px-3 py-2 text-gray-700">
           </div>
 

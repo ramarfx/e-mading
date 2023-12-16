@@ -36,8 +36,12 @@ class BookmarkController extends Controller
 
     }
 
-    public function destroy()
+    public function destroy(Request $request, Post $post)
     {
+        $user = $request->user();
 
+        $user->bookmarks()->detach($post->id);
+        
+        return redirect()->back();
     }
 }

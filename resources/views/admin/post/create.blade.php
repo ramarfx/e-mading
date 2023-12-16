@@ -24,11 +24,25 @@
             <label for="category" class="mb-2 block text-sm font-bold text-gray-700">Kategori</label>
             <select id="category" name="category" required
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
-              <option {{ old('category') == 'pengumuman' ? 'selected' : null }} value="pengumuman">Pengumuman</option>
-              <option {{ old('category') == 'event' ? 'selected' : null }} value="event">Event</option>
-              <option {{ old('category') == 'berita' ? 'selected' : null }} value="berita">Berita</option>
-              <option {{ old('category') == 'ekstrakulikuler' ? 'selected' : null }} value="ekstrakulikuler">
-                Ekstrakulikuler</option>
+              @if ($userRole === 'ekskul')
+                <option {{ old('category') == 'ekstrakulikuler' ? 'selected' : null }} value="ekstrakulikuler">
+                  Ekstrakulikuler
+                </option>
+              @elseif ($userRole === 'guru')
+                <option {{ old('category') == 'pengumuman' ? 'selected' : null }} value="pengumuman">Pengumuman</option>
+                <option {{ old('category') == 'artikel' ? 'selected' : null }} value="artikel">artikel</option>
+              @elseif ($userRole === 'osis')
+                <option {{ old('category') == 'pengumuman' ? 'selected' : null }} value="pengumuman">Pengumuman</option>
+                <option {{ old('category') == 'event' ? 'selected' : null }} value="event">Event</option>
+                <option {{ old('category') == 'artikel' ? 'selected' : null }} value="artikel">artikel</option>
+              @else
+                <option {{ old('category') == 'pengumuman' ? 'selected' : null }} value="pengumuman">Pengumuman</option>
+                <option {{ old('category') == 'event' ? 'selected' : null }} value="event">Event</option>
+                <option {{ old('category') == 'artikel' ? 'selected' : null }} value="artikel">artikel</option>
+                <option {{ old('category') == 'ekstrakulikuler' ? 'selected' : null }} value="ekstrakulikuler">
+                  Ekstrakulikuler
+                </option>
+              @endif
             </select>
           </div>
 
@@ -43,19 +57,19 @@
 
           <div class="mb-4">
             <label for="media" class="mb-2 block text-sm font-bold text-gray-700">Upload Gambar/Video</label>
-            <input type="file" id="media" name="media" min="{{ Carbon\Carbon::now()->format('Y-m-d\TH:i') }}"
+            <input type="file" id="media" name="media" required
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
           </div>
 
           <div class="mb-4">
             <label for="link" class="mb-2 block text-sm font-bold text-gray-700">Tautan (opsional)</label>
-            <input type="text" id="link" name="link" min="1" max="10" value="{{ old('link') }}"
+            <input type="text" id="link" name="link" min="1" value="{{ old('link') }}"
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
           </div>
           <div class="mb-4">
             <label for="published_at" class="mb-2 block text-sm font-bold text-gray-700">Atur jadwal (opsional)</label>
             <input type="datetime-local" name="published_at" id="published_at" value="{{ old('published_at') }}"
-              class="w-full rounded border px-3 py-2 text-gray-700">
+              min="{{ Carbon\Carbon::now() }}" class="w-full rounded border px-3 py-2 text-gray-700">
           </div>
 
           <div class="mb-6 w-full text-center">

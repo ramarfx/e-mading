@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <h3>Laporan kunjungan hari ini</h3>
+  <h3>Laporan kunjungan</h3>
   <div class="table-container">
     <table>
       <thead>
@@ -32,6 +32,7 @@
         @endforeach
         <tr>
           <td colspan="2">Total</td>
+          <td>{{ $total }}</td>
         </tr>
         <!-- Tambahkan baris-baris data lainnya -->
       </tbody>

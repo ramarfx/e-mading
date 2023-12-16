@@ -11,8 +11,12 @@ class HomeController extends Controller
     {
         $category = request('category');
         $searchBy = request('search_by');
+        $user = auth()->user();
 
-        $query = Post::query()
+        $posts = Post::query()
+            ->with(['user', 'bookmarks' => function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            }])
             ->where('is_accept', true)
             ->where('is_published', true)
             ->where('published_at', '<=', now())
@@ -24,17 +28,17 @@ class HomeController extends Controller
                 return $query->when($searchBy == 'title', function ($query) {
                     return $query->where('title', 'like', '%' . request('query') . '%');
                 })
-            ->when($searchBy == 'author', function ($query) {
-                return $query->whereHas('user', function ($query) {
-                    return $query->where('name', 'like', '%' . request('query') . '%');
-                });
+                    ->when($searchBy == 'author', function ($query) {
+                        return $query->whereHas('user', function ($query) {
+                            return $query->where('name', 'like', '%' . request('query') . '%');
+                        });
+                    })
+                    ->when($searchBy == 'date', function ($query) {
+                        return $query->whereDate('created_at', request('query'));
+                    });
             })
-            ->when($searchBy == 'date', function ($query) {
-                return $query->whereDate('created_at', request('query'));
-            });
-            });
+            ->get();
 
-        $posts = $query->get();
 
         return view('index', compact('posts'));
     }

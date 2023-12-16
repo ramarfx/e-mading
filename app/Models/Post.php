@@ -21,7 +21,7 @@ class Post extends Model
         'is_accept',
         'link',
         'published_at',
-        'is_published'
+        'is_publishedos'
     ];
 
     public function user()
