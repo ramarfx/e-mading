@@ -78,6 +78,7 @@ class PostController extends Controller
 
         $publishDate = $request->date('published_at');
 
+        //jika tanggal schedule dipilih
         if ($publishDate) {
             $parsedPublishDate = Carbon::parse($publishDate);
             $validated['published_at'] = $parsedPublishDate;
@@ -85,7 +86,7 @@ class PostController extends Controller
             $validated['published_at'] = Carbon::now();
         }
 
-
+        //upload media
         if ($request->hasFile('media')) {
             $file = $request->file('media');
 
@@ -105,6 +106,7 @@ class PostController extends Controller
         $validated['media_path'] = $path ?? null;
         $validated['media_type'] = $mediaType ?? null;
 
+        //auto accept jika user adalah admin
         if (auth()->user()->role === 'admin') {
             $validated['is_accept'] = true;
         }
@@ -148,8 +150,20 @@ class PostController extends Controller
             'priority_level' => 'required', 'string',
             'media'          => 'nullable', 'mimes:jpg,jpeg,png',
             'link'           => 'nullable',
+            'published_at'   => ['nullable', 'date', 'after_or_equal:now'],
         ]);
 
+        $publishDate = $request->date('published_at');
+
+        //jika tanggal schedule dipilih
+        if ($publishDate) {
+            $parsedPublishDate = Carbon::parse($publishDate);
+            $validated['published_at'] = $parsedPublishDate;
+        } else {
+            $validated['published_at'] = $post->published_at;
+        }
+
+        //update media
         if ($request->hasFile('media')) {
             if ($post->media_path) {
                 Storage::delete($post->media_path);
@@ -169,8 +183,8 @@ class PostController extends Controller
             }
         }
 
-        $validated['media_path'] = $path ?? null;
-        $validated['media_type'] = $mediaType ?? null;
+        $validated['media_path'] = $path ?? $post->media_path;
+        $validated['media_type'] = $mediaType ?? $post->media_type;
 
         $post->update($validated);
 

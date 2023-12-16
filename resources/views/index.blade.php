@@ -29,7 +29,7 @@
   <!-- Daftar Posting -->
   <section class="py-12">
     <div class="container mx-auto px-4">
-      <h2 class="mb-6 text-center text-2xl font-bold">Pengumuman Terbaru</h2>
+      <h2 class="mb-6 text-center text-2xl font-bold">Postingan Terbaru</h2>
       <div class="flex justify-center">
         @include('components.search')
       </div>

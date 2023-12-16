@@ -8,7 +8,7 @@
           class="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-lg">
           @csrf
           @method('patch')
-          <h1 class="mb-5 text-center text-lg font-semibold">Tambahkan Post</h1>
+          <h1 class="mb-5 text-center text-lg font-semibold">Edit Post</h1>
           <div class="mb-4">
             <label for="title" class="mb-2 block text-sm font-bold text-gray-700">Judul</label>
             <input type="text" id="title" name="title" required
@@ -27,10 +27,10 @@
             <label for="category" class="mb-2 block text-sm font-bold text-gray-700">Kategori</label>
             <select id="category" name="category" required
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
-              <option {{ old('category') == 'pengumuman' ? 'selected' : null }} value="pengumuman">Pengumuman</option>
-              <option {{ old('category') == 'event' ? 'selected' : null }} value="event">Event</option>
-              <option {{ old('category') == 'artikel' ? 'selected' : null }} value="artikel">artikel</option>
-              <option {{ old('category') == 'ekstrakulikuler' ? 'selected' : null }} value="ekstrakulikuler">
+              <option {{ old('category', $post->category) == 'pengumuman' ? 'selected' : null }} value="pengumuman">Pengumuman</option>
+              <option {{ old('category', $post->category) == 'event' ? 'selected' : null }} value="event">Event</option>
+              <option {{ old('category', $post->category) == 'artikel' ? 'selected' : null }} value="artikel">artikel</option>
+              <option {{ old('category', $post->category) == 'ekstrakulikuler' ? 'selected' : null }} value="ekstrakulikuler">
                 Ekstrakulikuler</option>
             </select>
           </div>
@@ -39,15 +39,15 @@
             <label for="priority_level" class="mb-2 block text-sm font-bold text-gray-700">Tingkat Prioritas</label>
             <select id="priority_level" name="priority_level" required
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
-              <option {{ old('priority_level') == 'biasa' ? 'selected' : null }} value="biasa">Biasa</option>
-              <option {{ old('priority_level') == 'penting' ? 'selected' : null }} value="penting">Penting</option>
+              <option {{ old('priority_level', $post->priority_level) == 'biasa' ? 'selected' : null }} value="biasa">Biasa</option>
+              <option {{ old('priority_level', $post->priority_level) == 'penting' ? 'selected' : null }} value="penting">Penting</option>
             </select>
           </div>
 
           <div class="mb-4">
             <label for="media" class="mb-2 block text-sm font-bold text-gray-700">Upload Gambar/Video</label>
-            <input type="file" id="media" name="media"
-              class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
+            <input type="file" id="media" name="media" accept="image/*, video/*" min="{{ now() }}"
+              class="w-full rounded border px-3 py-2 leading-tight text-gray-700" value="{{ $post->media_path }} ">
           </div>
 
           <div class="mb-4">
@@ -57,7 +57,7 @@
           </div>
           <div class="mb-4">
             <label for="publish_at" class="mb-2 block text-sm font-bold text-gray-700">Atur jadwal (opsional)</label>
-            <input type="datetime-local" name="publish_at" id="publish_at" value="{{ $post->publish_at }}"
+            <input type="datetime-local" name="publish_at" id="publish_at" value="{{ $post->published_at }}"
               class="w-full rounded border px-3 py-2 text-gray-700">
           </div>
 

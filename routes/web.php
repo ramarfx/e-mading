@@ -44,6 +44,7 @@ Route::middleware(['auth', 'not_only_student'])->group(function () {
     Route::resource('dashboard/post', PostController::class)->except('show');
     Route::get('dashboard/submit', [SubmitPostController::class, 'index'])->name('submit.index');
     Route::patch('dashboard/submit/{post}', [SubmitPostController::class, 'update'])->name('submit.update');
+    Route::patch('dashboard/submit/all', [SubmitPostController::class, 'updateAll'])->name('submit.update.all');
 });
 
 Route::middleware(['auth'])->group(function () {

@@ -8,6 +8,12 @@
       @include('components.search')
 
       @if (!empty($posts))
+        <form action="{{ route('submit.update.all') }}" method="post" class="flex">
+            @csrf
+            @method('patch')
+            <button type="submit" class="text-sm px-4 py-2 rounded-md bg-primary text-white font-semibold mb-2" onclick="confirm('Apakah anda yakin ingin menyetujui semua post')">setujui semua</button>
+        </form>
+
         <div class="grid grid-cols-2 gap-2 lg:grid-cols-4 lg:gap-4">
           @foreach ($posts as $post)
             <div class="flex flex-col">
