@@ -72,7 +72,7 @@
 
           <div class="mb-4">
             <label for="link" class="mb-2 block text-sm font-bold text-gray-700">Tautan (opsional)</label>
-            <input type="text" id="link" name="link" min="1" max="10" value="{{ $post->link }}"
+            <input type="text" id="link" name="link" min="1" max="10" value="{{ old('link', $post->link) }}"
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
             @error('link')
               <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
@@ -81,7 +81,7 @@
           <div class="mb-4">
             @if ($post->published_at >= now())
               <label for="published_at" class="mb-2 block text-sm font-bold text-gray-700">Atur jadwal (opsional)</label>
-              <input type="datetime-local" name="published_at" id="published_at" value="{{ $post->published_at }}"
+              <input type="datetime-local" name="published_at" id="published_at" value="{{ old('published_at', $post->published_at) }}"
                 class="w-full rounded border px-3 py-2 text-gray-700">
               @error('published_at')
                 <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
