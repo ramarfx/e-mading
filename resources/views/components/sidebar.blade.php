@@ -3,22 +3,22 @@
     <h2 class="mb-4 text-2xl font-bold">Dashboard</h2>
     <ul class="space-y-2 flex
      items-center justify-evenly lg:block">
-      <li><a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
+      <li><a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'text-primary' : 'text-black' }} flex items-center gap-3 px-4 py-2 hover:text-primary"><i
             class="fa-solid fa-table-columns"></i>
           <span class="hidden lg:block">Dashboard</span></a></li>
-      <li><a href="{{ route('dashboard.statistik') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
+      <li><a href="{{ route('dashboard.statistik') }}" class="{{ request()->routeIs('dashboard.statistik') ? 'text-primary' : 'text-black' }} flex items-center gap-3 px-4 py-2 hover:text-primary"><i
             class="fa-solid fa-chart-column"></i>
           <span class="hidden lg:block">Statistik</span></a></li>
-      <li><a href="{{ route('post.index') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
+      <li><a href="{{ route('post.index') }}" class="{{ request()->routeIs('post.*') ? 'text-primary' : 'text-black' }} flex items-center gap-3 px-4 py-2 hover:text-primary"><i
             class="fa-regular fa-file"></i>
           <span class="hidden lg:block">postingan mu</span></a>
       </li>
       @if (auth()->user()->roles->contains('name', 'admin'))
-        <li><a href="{{ route('users.index') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
+        <li><a href="{{ route('users.index') }}" class="{{ request()->routeIs('users.index') ? 'text-primary' : 'text-black' }} flex items-center gap-3 px-4 py-2 hover:text-primary"><i
               class="fa-regular fa-user"></i>
             <span class="hidden lg:block">List User</span></a>
         </li>
-        <li><a href="{{ route('submit.index') }}" class="flex items-center gap-3 px-4 py-2 hover:text-primary"><i
+        <li><a href="{{ route('submit.index') }}" class="{{ request()->routeIs('submit.index') ? 'text-primary' : 'text-black' }} flex items-center gap-3 px-4 py-2 hover:text-primary"><i
               class="fa-regular fa-square-check"></i><span class="hidden lg:block"> submit post</span></a></li>
       @endif
     </ul>

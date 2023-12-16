@@ -14,7 +14,7 @@
   @yield('head')
 </head>
 
-<body>
+<body onload="getData()">
   @include('components.navbar')
 
   <div class="mt-[80px]">
@@ -25,7 +25,8 @@
 
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="{{ asset('assets/js/period.js') }}"></script>
-@vite('resources/js/app.js')
+@yield('scripts')
+{{-- @vite('resources/js/app.js') --}}
 </body>
 
 </html>

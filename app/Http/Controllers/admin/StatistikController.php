@@ -13,10 +13,11 @@ class StatistikController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $totalViews = Post::withCount('viewedBy')->get()->sum('viewed_by_count');
-        $period     = request('period', 'all');                                    // Default ke harian jika tidak ada request
+        $period      = $request->input('period', 'all');
+        $currentUser = auth()->user();
+        $isAdmin     = $currentUser->roles->first()->name == 'admin';
 
-        $periodViews = Post::withCount([
+        $query = Post::withCount([
             'viewedBy' => function ($query) use ($period) {
                 switch ($period) {
                     case 'daily':
@@ -34,13 +35,16 @@ class StatistikController extends Controller
                     case 'yearly':
                         $query->whereYear('post_views.created_at', now()->year);
                         break;
-
-                    default:
-                        $query;
-                        break;
                 }
             }
-        ])->get();
-        return view('admin.statistik.index', compact('totalViews', 'periodViews', 'period'));
+        ]);
+
+        if (!$isAdmin) {
+            $query->whereBelongsTo($currentUser);
+        }
+
+        $periodViews = $query->get();
+
+        return view('admin.statistik.index', compact('periodViews', 'period'));
     }
 }

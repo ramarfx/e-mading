@@ -17,8 +17,8 @@ class UserRoleSeeder extends Seeder
         $adminRole = Role::create([
             'name' => 'admin',
         ]);
-        $teacherRole = Role::create([
-            'name' => 'teacher',
+        $guruRole = Role::create([
+            'name' => 'guru',
         ]);
         $studentCouncilRole = Role::create([
             'name' => 'osis',
@@ -59,6 +59,6 @@ class UserRoleSeeder extends Seeder
             'name' => 'veranika',
             'email' => 'guru@gmail.com',
             'nis_nip' => '3425',
-        ])->roles()->attach($teacherRole);
+        ])->roles()->attach($guruRole);
     }
 }

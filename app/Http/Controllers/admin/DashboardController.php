@@ -13,14 +13,17 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $users = User::count();
-        $posts  = Post::count();
+        $currentUser = auth()->user();
+        $isAdmin     = $currentUser->roles->first()->name == 'admin';
 
-        $totalViews = Post::withCount('viewedBy')->get()->sum('viewed_by_count');
-        $topViews = Post::withCount('viewedBy')
-            ->orderBy('viewed_by_count', 'desc')
-            ->take(5)
-            ->get();
+        $users = User::count();
+        $posts = $isAdmin ? Post::count() : Post::whereBelongsTo($currentUser)->count();
+
+
+        //ambil seluruh post jika user adalah admin
+        $postQuery  = $isAdmin ? Post::withCount('viewedBy') : Post::whereBelongsTo($currentUser)->withCount('viewedBy');
+        $totalViews = $postQuery->get()->sum('viewed_by_count');
+        $topViews   = $postQuery->orderBy('viewed_by_count', 'desc')->take(5)->get();
 
         return view('admin.index', compact('users', 'posts', 'totalViews', 'topViews'));
     }

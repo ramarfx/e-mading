@@ -30,25 +30,19 @@
             <label for="category" class="mb-2 block text-sm font-bold text-gray-700">Kategori</label>
             <select id="category" name="category" required
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
-              @if ($userRole === 'ekskul')
-                <option {{ old('category') == 'ekstrakulikuler' ? 'selected' : null }} value="ekstrakulikuler">
-                  Ekstrakulikuler
-                </option>
-              @elseif ($userRole === 'guru')
-                <option {{ old('category') == 'pengumuman' ? 'selected' : null }} value="pengumuman">Pengumuman</option>
-                <option {{ old('category') == 'artikel' ? 'selected' : null }} value="artikel">artikel</option>
-              @elseif ($userRole === 'osis')
-                <option {{ old('category') == 'pengumuman' ? 'selected' : null }} value="pengumuman">Pengumuman</option>
-                <option {{ old('category') == 'event' ? 'selected' : null }} value="event">Event</option>
-                <option {{ old('category') == 'artikel' ? 'selected' : null }} value="artikel">artikel</option>
-              @else
-                <option {{ old('category') == 'pengumuman' ? 'selected' : null }} value="pengumuman">Pengumuman</option>
-                <option {{ old('category') == 'event' ? 'selected' : null }} value="event">Event</option>
-                <option {{ old('category') == 'artikel' ? 'selected' : null }} value="artikel">artikel</option>
-                <option {{ old('category') == 'ekstrakulikuler' ? 'selected' : null }} value="ekstrakulikuler">
-                  Ekstrakulikuler
-                </option>
-              @endif
+              @php
+                $options = [
+                    'ekskul' => ['ekstrakulikuler'],
+                    'guru' => ['pengumuman', 'artikel'],
+                    'osis' => ['pengumuman', 'event', 'artikel'],
+                    'default' => ['pengumuman', 'event', 'artikel', 'ekstrakulikuler'],
+                ];
+              @endphp
+
+              @foreach ($options[$userRole] ?? $options['default'] as $option)
+                <option {{ old('category') == $option ? 'selected' : '' }} value="{{ $option }}">
+                  {{ ucfirst($option) }}</option>
+              @endforeach
             </select>
             @error('category')
               <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
@@ -59,8 +53,12 @@
             <label for="priority_level" class="mb-2 block text-sm font-bold text-gray-700">Tingkat Prioritas</label>
             <select id="priority_level" name="priority_level" required
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
-              <option {{ old('priority_level') == 'biasa' ? 'selected' : null }} value="biasa">Biasa</option>
-              <option {{ old('priority_level') == 'penting' ? 'selected' : null }} value="penting">Penting</option>
+              @if ($userRole === 'ekskul')
+                <option {{ old('priority_level') == 'biasa' ? 'selected' : null }} value="biasa">Biasa</option>
+              @else
+                <option {{ old('priority_level') == 'biasa' ? 'selected' : null }} value="biasa">Biasa</option>
+                <option {{ old('priority_level') == 'penting' ? 'selected' : null }} value="penting">Penting</option>
+              @endif
             </select>
             @error('priority_level')
               <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
@@ -87,7 +85,7 @@
           <div class="mb-4">
             <label for="published_at" class="mb-2 block text-sm font-bold text-gray-700">Atur jadwal (opsional)</label>
             <input type="datetime-local" name="published_at" id="published_at" value="{{ old('published_at') }}"
-             class="w-full rounded border px-3 py-2 text-gray-700">
+              class="w-full rounded border px-3 py-2 text-gray-700">
             @error('published_at')
               <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
             @enderror

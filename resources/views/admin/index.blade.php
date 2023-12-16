@@ -34,10 +34,12 @@
             <p class="font-semibold">Views</p>
           </div>
           @foreach ($topViews as $post)
-            <div class="flex w-[99%] justify-between border-b py-2">
-              <a href="{{ route('post.show', $post) }}" class="hover:text-primary">{{ $post->title }}</a>
-              <p>{{ $post->viewed_by_count }}</p>
-            </div>
+            @if ($post->viewed_by_count > 0)
+              <div class="flex w-[99%] justify-between border-b py-2">
+                <a href="{{ route('post.show', $post) }}" class="hover:text-primary">{{ $post->title }}</a>
+                <p>{{ $post->viewed_by_count }}</p>
+              </div>
+            @endif
           @endforeach
         </div>
 

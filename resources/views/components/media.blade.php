@@ -4,7 +4,7 @@
     $isPlaceholder = $post->media_path === 'placeholder';
     $isVideo       = $post->media_type === 'video';
     $mediaUrl      = Storage::url($post->media_path);
-    $mediaPath     = $isPlaceholder ? asset('assets/img/poster.jpeg') : $mediaUrl;
+    $mediaPath     = $isPlaceholder ? asset('assets/img/nomedia.png') : $mediaUrl;
 @endphp
 
 @if ($isPlaceholder)

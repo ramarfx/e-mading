@@ -14,7 +14,7 @@
                     <div class="relative flex flex-col items-center">
                       <button id="dropdownBtn" class="h-[40px] w-[40px] overflow-hidden rounded-full bg-sky-400 p-1"
                         onclick="">
-                        <img src="{{ asset('assets/img/festfun.jpg') }}"
+                        <img src="{{ asset('assets/img/profile.png') }}"
                           class="h-auto w-full max-w-full object-cover object-center" alt="">
                       </button>
 

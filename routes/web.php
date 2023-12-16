@@ -36,7 +36,6 @@ Route::middleware(['guest'])->group(function () {
 
 
 Route::middleware(['auth', 'not_only_student'])->group(function () {
-    Route::post('/logout', LogoutController::class)->name('logout');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/print/{period}', PdfController::class)->name('dashboard.print');
     Route::get('/dashboard/statistik', StatistikController::class)->name('dashboard.statistik');
@@ -52,6 +51,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', LogoutController::class)->name('logout');
     Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
     Route::get('/bookmark', [BookmarkController::class, 'index'])->name('bookmark.index');
     Route::post('/bookmark/{post}', [BookmarkController::class, 'store'])->name('bookmark.store');

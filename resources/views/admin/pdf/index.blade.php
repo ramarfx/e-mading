@@ -31,7 +31,7 @@
           @endif
         @endforeach
         <tr>
-          <td colspan="2">Total</td>
+          <td colspan="2">Total kunjungan</td>
           <td>{{ $total }}</td>
         </tr>
         <!-- Tambahkan baris-baris data lainnya -->

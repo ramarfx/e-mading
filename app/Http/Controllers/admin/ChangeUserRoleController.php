@@ -15,7 +15,7 @@ class ChangeUserRoleController extends Controller
     {
         $request->validate([
             'user_id' => 'required|exists:users,id',
-            'role' => 'required|in:admin,student,teacher,osis,ekskul',
+            'role' => 'required|in:admin,student,guru,osis,ekskul',
         ]);
     }
 }

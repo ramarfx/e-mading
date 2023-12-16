@@ -15,9 +15,6 @@ class BookmarkController extends Controller
         $user = request()->user();
         $posts = $user->bookmarks()->get();
 
-        // $posts = Post::with(['user','bookmarks' => function ($query) use ($user) {
-        //     $query->where('user_id', $user->id);
-        // }])->get();
         return view('user.bookmark', compact('posts'));
 
     }
@@ -25,9 +22,6 @@ class BookmarkController extends Controller
     public function store(Request $request, Post $post)
     {
         $user = $request->user();
-        // $post  = Post::find($post);
-
-        // return $post;
 
         $user->bookmarks()->attach($post->id);
 
@@ -41,7 +35,7 @@ class BookmarkController extends Controller
         $user = $request->user();
 
         $user->bookmarks()->detach($post->id);
-        
+
         return redirect()->back();
     }
 }
