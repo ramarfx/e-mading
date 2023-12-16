@@ -25,7 +25,7 @@
 
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="{{ asset('assets/js/period.js') }}"></script>
-<script type="module" src="{{ mix('resources/js/app.js') }}"></script>
+@vite('resources/js/app.js')
 </body>
 
 </html>

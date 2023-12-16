@@ -73,20 +73,17 @@ class PostController extends Controller
             'priority_level' => ['required', 'string'],
             'media'          => ['nullable', 'file', 'mimes:jpeg,png,gif,webp,mp4,mov,avi,mkv', 'max:20480'],
             'link'           => ['nullable', 'url'],
-            'published_at'   => ['nullable', 'date'],
+            'published_at'   => ['nullable', 'date', 'after_or_equal:now'],
         ]);
 
-        $publishDate = $request->input('publish_date');
+        $publishDate = $request->date('published_at');
 
         if ($publishDate) {
             $parsedPublishDate = Carbon::parse($publishDate);
-            $validated['published_at'] = $parsedPublishDate ?? null;
+            $validated['published_at'] = $parsedPublishDate;
         } else {
             $validated['published_at'] = Carbon::now();
         }
-        $parsedPublishDate = Carbon::parse($publishDate);
-        $validated['published_at'] = $parsedPublishDate ?? null;
-
 
 
         if ($request->hasFile('media')) {

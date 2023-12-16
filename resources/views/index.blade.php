@@ -34,7 +34,7 @@
         @include('components.search')
       </div>
       <div class="grid grid-cols-2 gap-8 md:grid-cols-2 lg:grid-cols-4">
-        @foreach ($posts as $post)
+        @forelse ($posts as $post)
           <div class="flex flex-col">
             <div class="relative w-full bg-primary">
               @include('components.media')
@@ -59,28 +59,30 @@
                 </div>
                 <div class="flex gap-5">
                   @if ($post->bookmarks->isNotEmpty())
-                  <form action="{{ route('bookmark.destroy', $post) }}" method="post">
-                    @csrf
-                    @method('delete')
-                    <input type="hidden" name="post_id" value="{{ $post->id }}">
-                    <button type="submit">
-                      <i class="fa-solid fa-bookmark scale-150 text-primary"></i>
-                    </button>
-                  </form>
+                    <form action="{{ route('bookmark.destroy', $post) }}" method="post">
+                      @csrf
+                      @method('delete')
+                      <input type="hidden" name="post_id" value="{{ $post->id }}">
+                      <button type="submit">
+                        <i class="fa-solid fa-bookmark scale-150 text-primary"></i>
+                      </button>
+                    </form>
                   @else
-                  <form action="{{ route('bookmark.store', $post) }}" method="post">
-                    @csrf
-                    <input type="hidden" name="post_id" value="{{ $post->id }}">
-                    <button type="submit">
-                      <i class="fa-regular fa-bookmark scale-150 text-primary"></i>
-                    </button>
-                  </form>
+                    <form action="{{ route('bookmark.store', $post) }}" method="post">
+                      @csrf
+                      <input type="hidden" name="post_id" value="{{ $post->id }}">
+                      <button type="submit">
+                        <i class="fa-regular fa-bookmark scale-150 text-primary"></i>
+                      </button>
+                    </form>
                   @endif
                 </div>
               </div>
             </div>
           </div>
-        @endforeach
+        @empty
+            <p class="text-secondary col-span-4 text-center">Tidak ada postingan</p>
+        @endforelse
       </div>
     </div>
   </section>

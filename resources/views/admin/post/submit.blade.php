@@ -4,11 +4,11 @@
   <div class="flex flex-col lg:flex-row">
     @include('components.sidebar')
 
-    <div class="min-h-screen flex-1 p-8">
+    <div class="min-h-screen flex-1 bg-gray-100 p-8">
       @include('components.search')
 
       @if (!empty($posts))
-        <div class="grid grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 gap-2 lg:grid-cols-4 lg:gap-4">
           @foreach ($posts as $post)
             <div class="flex flex-col">
               <div class="relative w-full bg-primary">
@@ -27,7 +27,7 @@
 
 
               </div>
-              <div class="rounded border px-4 pt-4">
+              <div class="rounded border bg-white px-4 pt-4">
                 <a href="{{ route('post.show', $post) }}" class="block truncate text-base font-semibold">
                   {{ $post->title }}
                 </a>

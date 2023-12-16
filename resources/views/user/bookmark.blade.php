@@ -9,24 +9,10 @@
         <h1 class="text-2xl font-bold my-5">Bookmark mu</h1>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
 
-          @foreach ($posts as $post)
-          <div class="flex flex-col">
+        @forelse ($posts as $post)
+        <div class="flex flex-col">
             <div class="relative w-full bg-primary">
               @include('components.media')
-              {{-- @if ($post->media_path === 'placeholder')
-                <img class="h-[150px] w-full max-w-full object-cover object-center"
-                  src="{{ asset('assets/img/poster.jpeg') }}">
-              @elseif ($post->media_type === 'video')
-                <video class="h-[150px] w-full max-w-full object-cover object-center">
-                  <source src="{{ \Illuminate\Support\Facades\Storage::url($post->media_path) }}" type="video/mp4">
-                </video>
-              @else
-                <img
-                  src="{{ $post->media == 'placeholder' ? asset('assets/img/poster.jpeg') : \Illuminate\Support\Facades\Storage::url($post->media_path) }}"
-                  class="h-[150px] w-full max-w-full object-cover object-center"
-                  alt="{{ \Illuminate\Support\Facades\Storage::url($post->media) }}">
-              @endif --}}
-
 
               <div class="absolute left-4 top-3 flex flex-wrap gap-1">
                 <span class="rounded-md bg-red-500 px-2 py-1 text-xs text-white">{{ $post->priority_level }}</span>
@@ -61,8 +47,9 @@
               </div>
             </div>
           </div>
-        @endforeach
-
+        @empty
+            <p class="text-secondary col-span-4 text-center">Kamu tidak memiliki bookmark</p>
+        @endforelse
 
         </div>
       </div>

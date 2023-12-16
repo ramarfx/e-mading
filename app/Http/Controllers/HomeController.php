@@ -14,12 +14,15 @@ class HomeController extends Controller
         $user = auth()->user();
 
         $posts = Post::query()
-            ->with(['user', 'bookmarks' => function ($query) use ($user) {
-                $query->where('user_id', $user->id);
-            }])
+            ->with(['user'])
+            ->when(auth()->check(), function ($query) use ($user) {
+                $query->with(['user', 'bookmarks' => function ($query) use ($user) {
+                    $query->where('user_id', $user->id);
+                }]);
+            })
             ->where('is_accept', true)
             ->where('is_published', true)
-            ->where('published_at', '<=', now())
+            ->whereDate('published_at', '<=', now())
             ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')")
             ->when($category, function ($query) use ($category) {
                 return $query->where('category', $category);

@@ -21,7 +21,7 @@ class Post extends Model
         'is_accept',
         'link',
         'published_at',
-        'is_publishedos'
+        'is_published',
     ];
 
     public function user()
@@ -32,12 +32,6 @@ class Post extends Model
     public function bookmarks() : BelongsToMany
     {
         return $this->belongsToMany(User::class, 'bookmarks');
-    }
-
-    public function schedulePost(\DateTimeInterface $publishDate)
-    {
-        $this->published_at = $publishDate;
-        $this->save();
     }
 
     public function viewedBy() : BelongsToMany

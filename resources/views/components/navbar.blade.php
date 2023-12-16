@@ -24,9 +24,6 @@
                             <p href="" class="border-b pb-3 text-lg font-semibold capitalize text-primary">Hi,
                               {{ auth()->user()->name }}</p>
                           </li>
-                          <li><a href=""
-                              class="flex items-center gap-3 text-base text-secondary hover:text-primary"><i
-                                class="fa-solid fa-user"></i>profil</a></li>
                           <li><a href="{{ route('bookmark.index') }}"
                               class="flex items-center gap-3 text-base text-secondary hover:text-primary"><i
                                 class="fa-solid fa-bookmark"></i> favorit saya</a></li>
