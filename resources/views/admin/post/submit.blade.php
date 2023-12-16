@@ -11,7 +11,7 @@
         <form action="{{ route('submit.update.all') }}" method="post" class="flex">
             @csrf
             @method('patch')
-            <button type="submit" class="text-sm px-4 py-2 rounded-md bg-primary text-white font-semibold mb-2" onclick="confirm('Apakah anda yakin ingin menyetujui semua post')">setujui semua</button>
+            <button type="submit" class="text-sm px-4 py-2 rounded-md bg-primary text-white font-semibold mb-2" onclick="return confirm('Apakah anda yakin ingin menyetujui semua post')">setujui semua</button>
         </form>
 
         <div class="grid grid-cols-2 gap-2 lg:grid-cols-4 lg:gap-4">
@@ -53,7 +53,7 @@
                     <form action="{{ route('post.destroy', $post) }}" method="post">
                       @csrf
                       @method('delete')
-                      <button type="submit">
+                      <button type="submit" onclick="return confirm('Anda yakin ingin menghapus postingan ini?')">
                         <i class="fa-solid fa-trash cursor-pointer hover:text-red-500"></i>
                       </button>
                     </form>
@@ -64,7 +64,7 @@
                       <form action="{{ route('submit.update', $post) }}" method="post">
                         @csrf
                         @method('patch')
-                        <button type="submit"><i class="fa-solid fa-check"></i></button>
+                        <button type="submit"><i class="fa-solid fa-check" onclick="alert('postingan telah disetujui')"></i></button>
                       </form>
                     @endif
                   </div>

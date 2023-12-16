@@ -40,7 +40,7 @@ class HomeController extends Controller
                         return $query->whereDate('created_at', request('query'));
                     });
             })
-            ->get();
+            ->paginate(8);
 
 
         return view('index', compact('posts'));

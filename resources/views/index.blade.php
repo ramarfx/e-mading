@@ -83,7 +83,11 @@
         @empty
             <p class="text-secondary col-span-4 text-center">Tidak ada postingan</p>
         @endforelse
-      </div>
+
+    </div>
+        <div class="w-fit mx-auto mt-5">
+            {{ $posts->appends(['period' => request('period'), 'category' => request('category')])->links()}}
+        </div>
     </div>
   </section>
 @endsection

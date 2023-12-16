@@ -12,12 +12,18 @@
             <label for="title" class="mb-2 block text-sm font-bold text-gray-700">Judul</label>
             <input type="text" id="title" name="title" required
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700" value="{{ old('title') }}">
+            @error('title')
+              <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
+            @enderror
           </div>
           <div class="mb-4">
             <label for="description" class="mb-2 block text-sm font-bold text-gray-700">Description</label>
             <textarea type="" id="description" name="description" required value="{{ old('description') }}"
               class="h-96 w-full rounded border px-3 py-2 leading-tight text-gray-700">
             </textarea>
+            @error('description')
+              <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
+            @enderror
           </div>
 
           <div class="mb-4">
@@ -44,6 +50,9 @@
                 </option>
               @endif
             </select>
+            @error('category')
+              <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
+            @enderror
           </div>
 
           <div class="mb-4">
@@ -53,23 +62,35 @@
               <option {{ old('priority_level') == 'biasa' ? 'selected' : null }} value="biasa">Biasa</option>
               <option {{ old('priority_level') == 'penting' ? 'selected' : null }} value="penting">Penting</option>
             </select>
+            @error('priority_level')
+              <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
+            @enderror
           </div>
 
           <div class="mb-4">
             <label for="media" class="mb-2 block text-sm font-bold text-gray-700">Upload Gambar/Video</label>
             <input type="file" id="media" name="media" required
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
+            @error('media')
+              <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
+            @enderror
           </div>
 
           <div class="mb-4">
             <label for="link" class="mb-2 block text-sm font-bold text-gray-700">Tautan (opsional)</label>
             <input type="text" id="link" name="link" min="1" value="{{ old('link') }}"
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
+            @error('link')
+              <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
+            @enderror
           </div>
           <div class="mb-4">
             <label for="published_at" class="mb-2 block text-sm font-bold text-gray-700">Atur jadwal (opsional)</label>
             <input type="datetime-local" name="published_at" id="published_at" value="{{ old('published_at') }}"
-            min="{{ now() }}" class="w-full rounded border px-3 py-2 text-gray-700">
+             class="w-full rounded border px-3 py-2 text-gray-700">
+            @error('published_at')
+              <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
+            @enderror
           </div>
 
           <div class="mb-6 w-full text-center">

@@ -52,5 +52,7 @@ class SubmitPostController extends Controller
         Post::where('is_accept', false)->update([
             'is_accept' => true
         ]);
+
+        return Redirect::route('submit.index');
 }
 }

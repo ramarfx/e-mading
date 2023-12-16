@@ -7,8 +7,8 @@
         class="w-full rounded-l-md px-4 py-2 focus:outline-none" />
       <span id="searchBtn" class="cursor-pointer px-4"><i class="fa-solid fa-sliders"></i></span>
 
-      <div id="searchBy" class="absolute right-0 top-12 z-20 hidden border">
-        <select name="search_by" id="search_by">
+      <div id="searchBy" class="absolute right-0 top-12 z-20 hidden">
+        <select name="search_by" id="search_by" class="px-3 py-2 border shadow-sm rounded-md">
           <option {{ request('search_by') == 'title' ? 'selected' : null }} value="title">Judul</option>
           <option {{ request('search_by') == 'category' ? 'selected' : null }} value="category">Kategori
           </option>
@@ -16,7 +16,7 @@
           <option {{ request('search_by') == 'date' ? 'selected' : null }} value="date">Tanggal</option>
         </select>
 
-        <select name="category" id="category">
+        <select name="category" id="category" class="px-3 py-2 border shadow-sm rounded-md">
           <option {{ request('category') == 'pengumuman' ? 'selected' : null }} value="pengumuman">pengumuman
           </option>
           <option {{ request('category') == 'event' ? 'selected' : null }} value="event">event</option>

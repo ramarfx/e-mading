@@ -47,7 +47,6 @@ class PostController extends Controller
 
         $posts = $query->whereBelongsTo($user)->get();
 
-
         return view('admin.post.index', compact('posts'));
     }
 
@@ -106,8 +105,8 @@ class PostController extends Controller
         $validated['media_path'] = $path ?? null;
         $validated['media_type'] = $mediaType ?? null;
 
-        //auto accept jika user adalah admin
-        if (auth()->user()->role === 'admin') {
+        //auto accept jika role user adalah admin
+        if (auth()->user()->roles->first()->name === 'admin') {
             $validated['is_accept'] = true;
         }
 
