@@ -1,0 +1,33 @@
+role admin
+username : admin
+email : admin@gmail.com
+nis_nip  : 123456
+password : password
+
+role guru
+username : veranika
+email : veranika@gmail.com
+nis_nip : 2222
+password : password
+
+role osis
+username : osis
+email : osis@gmail.com
+nis_nip : 3333
+password : password
+
+role ketua ekskul
+username : basket
+email : basket@gmail.com
+nis_nip : 3333
+password : password
+
+role siswa
+username : rama
+email : rama@gmail.com
+nis_nip : 3333
+password : password
+
+note:
+jika gambar yang di post (bukan dari seeder) gak muncul, sesuaikan APP_URL di .ENV nya ya
+

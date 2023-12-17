@@ -36,12 +36,30 @@ class UserRoleSeeder extends Seeder
             'email'   => 'admin@gmail.com',
             'nis_nip' => '123456',
         ])->roles()->attach($adminRole);
-        
+
         User::factory()->create([
-            'name'    => 'veranika',
-            'email'   => 'veranika@gmail.com',
-            'nis_nip' => '654321',
+            'name'    => 'guru',
+            'email'   => 'guru@gmail.com',
+            'nis_nip' => '2222',
         ])->roles()->attach($guruRole);
+
+        User::factory()->create([
+            'name'    => 'osis',
+            'email'   => 'osis@gmail.com',
+            'nis_nip' => '3333',
+        ])->roles()->attach($osisRole);
+
+        User::factory()->create([
+            'name'    => 'basket',
+            'email'   => 'basket@gmail.com',
+            'nis_nip' => '4444',
+        ])->roles()->attach($ekskulRole);
+
+        User::factory()->create([
+            'name'    => 'rama',
+            'email'   => 'rama@gmail.com',
+            'nis_nip' => '5555',
+        ])->roles()->attach($siswaRole);
 
         foreach (User::factory(5)->create() as $user) {
             $user->roles()->attach($guruRole);
