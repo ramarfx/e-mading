@@ -19,13 +19,13 @@ password : password
 role ketua ekskul
 username : basket
 email : basket@gmail.com
-nis_nip : 3333
+nis_nip : 4444
 password : password
 
 role siswa
 username : rama
 email : rama@gmail.com
-nis_nip : 3333
+nis_nip : 5555
 password : password
 
 note:

@@ -7,13 +7,12 @@
 
     @include('components.sidebar')
 
-    <!-- Main Content Area -->
+
     <div class="flex-1 p-8">
       <h1 class="mb-4 text-2xl font-bold">Dashboard Papan Pengumuman Sekolah</h1>
 
-      {{-- Content Area --}}
       <div class="grid grid-cols-1 gap-2 lg:gap-5">
-        <div class="grid grid-cols-3 gap-6 lg:gap-10">
+        <div class="grid grid-cols-3 gap-2 lg:gap-10">
           @if ($isAdmin)
             <div class="flex flex-col items-center justify-center rounded-md bg-white p-4">
               <h3 class="text-center text-xs font-semibold lg:text-lg">Jumlah User</h3>
@@ -31,15 +30,6 @@
         </div>
         <div class="relative flex w-full flex-col rounded-md bg-white p-4">
           <h2 class="mb-2 h-full w-full text-lg font-semibold">Top Kunjungan</h2>
-
-          @if ($topViews->first()->viewed_by_count > 0)
-            <div class="flex justify-between border-b">
-              <p class="font-semibold">Judul post</p>
-              <p class="font-semibold">Views</p>
-            </div>
-            @else
-            <p class="text-center">Belum ada kunjungan</p>
-          @endif
 
           @foreach ($topViews as $post)
             @if ($post->viewed_by_count > 0)

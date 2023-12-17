@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\auth\LoginController;
@@ -26,8 +25,6 @@ use App\Http\Controllers\admin\StatistikController;
 
 // HomeController
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
-// Auth routes
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [LoginController::class, 'create'])->name('login.index');
@@ -60,11 +57,3 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/bookmark/{post}', [BookmarkController::class, 'store'])->name('bookmark.store');
     Route::delete('/bookmark/{post}', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
 });
-
-
-
-
-// User routes
-// Route::get('/posts/user', [UserController::class, 'showPost']);
-
-// User list

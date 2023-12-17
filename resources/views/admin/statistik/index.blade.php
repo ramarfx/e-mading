@@ -46,11 +46,11 @@
           </div>
           @foreach ($periodViews as $post)
             <div class="flex w-[99%] justify-between border-b py-2">
-              <p>{{ $post->title }}</p>
+              <a href="{{ route('post.show', $post) }}" class="hover:text-primary">{{ $post->title }}</a>
               <p>{{ $post->viewed_by_count }}</p>
             </div>
           @endforeach
-          <div class="w-fit mx-auto mt-5">
+          <div class="mx-auto mt-5 w-fit">
             {{ $periodViews->links() }}
           </div>
         </div>

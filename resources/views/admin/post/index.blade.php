@@ -4,7 +4,7 @@
   <div class="flex flex-col lg:flex-row">
     @include('components.sidebar')
 
-    <div class="min-h-screen flex-1 px-4 bg-gray-100 lg:p-8">
+    <div class="min-h-screen flex-1 bg-gray-100 px-4 lg:p-8">
       @include('components.search')
 
       <div class="grid grid-cols-2 gap-2 lg:grid-cols-4 lg:gap-4">
@@ -28,7 +28,7 @@
 
 
             </div>
-            <div class="rounded border px-4 bg-white pt-4">
+            <div class="rounded border bg-white px-4 pt-4">
               <a href="{{ route('post.show', $post) }}" class="block truncate text-sm font-semibold md:text-base">
                 {{ $post->title }}
               </a>
@@ -57,8 +57,8 @@
               </div>
             </div>
           </div>
-          @empty
-          <p class="text-secondary col-span-4 text-center">Kamu belum memosting apapun</p>
+        @empty
+          <p class="col-span-4 text-center text-secondary">Kamu belum memosting apapun</p>
         @endforelse
       </div>
 

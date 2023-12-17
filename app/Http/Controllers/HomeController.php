@@ -13,7 +13,7 @@ class HomeController extends Controller
         $searchBy = request('search_by');
         $user = auth()->user();
 
-        $posts = Post::query()
+        $query = Post::query()
             ->with(['user'])
             ->when(auth()->check(), function ($query) use ($user) {
                 $query->with(['user', 'bookmarks' => function ($query) use ($user) {
@@ -39,8 +39,9 @@ class HomeController extends Controller
                     ->when($searchBy == 'date', function ($query) {
                         return $query->whereDate('created_at', request('query'));
                     });
-            })
-            ->paginate(8);
+            });
+
+        $posts = $query->paginate(10);
 
 
         return view('index', compact('posts'));
