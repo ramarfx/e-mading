@@ -38,7 +38,6 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth', 'not_only_student'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/print/{period}', PdfController::class)->name('dashboard.print');
-    Route::get('/dashboard/statistik', StatistikController::class)->name('dashboard.statistik');
     Route::get('dashboard/users', [UsersController::class, 'index'])->name('users.index');
     Route::post('dashboard/users', [UsersController::class, 'update'])->name('users.update');
     Route::resource('dashboard/post', PostController::class)->except('show');
@@ -48,15 +47,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('dashboard/submit', [SubmitPostController::class, 'index'])->name('submit.index');
     Route::patch('dashboard/submit/{post}', [SubmitPostController::class, 'update'])->name('submit.update');
     Route::patch('dashboard/submit', [SubmitPostController::class, 'updateAll'])->name('submit.update.all');
+    Route::get('/dashboard/statistik', StatistikController::class)->name('dashboard.statistik');
+});
+
+Route::middleware(['is_published', 'auth'])->group(function () {
+    Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', LogoutController::class)->name('logout');
-    Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
     Route::get('/bookmark', [BookmarkController::class, 'index'])->name('bookmark.index');
     Route::post('/bookmark/{post}', [BookmarkController::class, 'store'])->name('bookmark.store');
     Route::delete('/bookmark/{post}', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
 });
+
 
 
 

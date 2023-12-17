@@ -120,7 +120,8 @@ class PostController extends Controller
     {
         //hitung view post
         $user = request()->user();
-        if (!$user->viewedPost->contains($post)) {
+        
+        if (!$user->viewedPost->contains($post) && $post->is_published && $post->is_accept) {
             $user->viewedPost()->attach($post);
         }
 

@@ -40,10 +40,6 @@ class StatistikController extends Controller
             }
         ]);
 
-        if (!$isAdmin) {
-            $query->whereBelongsTo($currentUser);
-        }
-
         $periodViews = $query->orderBy('viewed_by_count', 'desc')->paginate(15);
 
         $postViewChart = $postViewChart->build();
