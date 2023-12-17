@@ -14,10 +14,12 @@
       {{-- Content Area --}}
       <div class="grid grid-cols-1 gap-2 lg:gap-5">
         <div class="grid grid-cols-3 gap-6 lg:gap-10">
-          <div class="flex flex-col items-center justify-center rounded-md bg-white p-4">
-            <h3 class="text-center text-xs font-semibold lg:text-lg">Jumlah User</h3>
-            <p class="text-center text-base font-medium text-primary lg:text-2xl">{{ $users }}</p>
-          </div>
+          @if ($isAdmin)
+            <div class="flex flex-col items-center justify-center rounded-md bg-white p-4">
+              <h3 class="text-center text-xs font-semibold lg:text-lg">Jumlah User</h3>
+              <p class="text-center text-base font-medium text-primary lg:text-2xl">{{ $users }}</p>
+            </div>
+          @endif
           <div class="flex flex-col rounded-md bg-white p-4">
             <h3 class="text-center text-xs font-semibold lg:text-lg">Jumlah Postingan</h3>
             <p class="text-center text-base font-medium text-primary lg:text-2xl">{{ $posts }}</p>

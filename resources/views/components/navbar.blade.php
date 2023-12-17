@@ -34,7 +34,7 @@
                                   class="fa-solid fa-table-columns"></i> Dashboard</a>
                             </li>
                           @endif
-                          <li><a href=""
+                          <li><a href="#"
                               class="flex items-center gap-3 border-t pt-2 text-base text-secondary hover:text-primary">
                               <i class="fa-solid fa-right-from-bracket"></i>
                               <form action="{{ route('logout') }}" method="post">

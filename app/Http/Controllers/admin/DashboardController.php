@@ -4,9 +4,6 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
@@ -25,6 +22,6 @@ class DashboardController extends Controller
         $totalViews = $postQuery->get()->sum('viewed_by_count');
         $topViews   = $postQuery->orderBy('viewed_by_count', 'desc')->take(5)->get();
 
-        return view('admin.index', compact('users', 'posts', 'totalViews', 'topViews'));
+        return view('admin.index', compact('users', 'posts', 'totalViews', 'topViews', 'isAdmin'));
     }
 }

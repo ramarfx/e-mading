@@ -13,10 +13,14 @@ class UsersController extends Controller
     public function index()
     {
         //ambil seluruh user dan urutkan berdasarkan role
-        $users = User::with('roles')->get();
+        $users = User::query()
+            ->leftJoin('role_user', 'users.id', '=', 'role_user.user_id')
+            ->leftJoin('roles', 'role_user.role_id', '=', 'roles.id')
+            ->orderByRaw("FIELD(roles.name, 'admin', 'guru', 'osis', 'ekskul', 'siswa')")
+            ->with('roles')
+            ->get();
         $roles = Role::all();
 
-        // return $users;
 
         return view('admin.account.index', compact('users', 'roles'));
     }

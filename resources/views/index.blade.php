@@ -9,12 +9,11 @@
           <h2 class="mb-6 text-center text-3xl font-bold md:text-start lg:text-5xl">Selamat Datang di Mading Digital
             <span class="text-primary">SMKN 46 Jakarta</span>
           </h2>
-          <p class="w-4/5 text-base leading-relaxed text-secondary">
+          <p class=" w-full lg:w-4/5 text-base leading-relaxed text-secondary">
             Mading digital sekolah merupakan tempat untuk berbagi informasi, pengumuman, dan kegiatan sekolah secara
-            online.
-            Bergabunglah dengan kami untuk tetap terhubung dengan kegiatan sekolah dan komunitas.
+            online.Bergabunglah untuk tetap terhubung dengan kegiatan sekolah dan komunitas.
           </p>
-          <a href="" class="group mt-4 inline-block bg-primary px-5 py-2 text-base text-white">Baca selengkapnya <i
+          <a href="#posts" class="group mt-4 inline-block bg-primary px-5 py-2 text-base text-white">Lihat<i
               class="fa-solid fa-arrow-right-long ml-3"></i></a>
         </div>
         <div class="mb-16 w-full self-center lg:w-1/2">
@@ -27,13 +26,13 @@
 
 
   <!-- Daftar Posting -->
-  <section class="py-12">
+  <section id="posts" class="py-12">
     <div class="container mx-auto px-4">
       <h2 class="mb-6 text-center text-2xl font-bold">Postingan Terbaru</h2>
       <div class="flex justify-center">
         @include('components.search')
       </div>
-      <div class="grid grid-cols-2 gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div class="grid grid-cols-2 gap-3 lg:gap-8 md:grid-cols-2 lg:grid-cols-4">
         @forelse ($posts as $post)
           <div class="flex flex-col">
             <div class="relative w-full bg-primary">
