@@ -1,7 +1,7 @@
 {{-- search bar --}}
 <div class="mb-7 w-full md:w-1/2">
   <form action="" method="get">
-    <div class="relative flex items-center rounded-tl-md rounded-bl-md border">
+    <div class="relative flex items-center rounded-tl-md rounded-bl-md border bg-white">
       <span type="submit" class="px-4"><i class="fa-solid fa-magnifying-glass"></i></span>
       <input type="text" name="query" value="{{ request('query') }}" placeholder="Cari..."
         class="w-full rounded-l-md px-4 py-2 focus:outline-none" />

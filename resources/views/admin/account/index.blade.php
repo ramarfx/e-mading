@@ -8,7 +8,7 @@
   <div class="flex flex-col lg:flex-row">
     @include('components.sidebar')
 
-    <div class="min-h-screen flex-1 p-8">
+    <div class="min-h-screen flex-1 bg-gray-100 p-8">
       <div class="overflow-x-auto">
         <table id="myTable" class="table w-full table-auto border-collapse rounded-md bg-white text-sm shadow-lg lg:text-base">
           <thead class="border bg-primary text-white">

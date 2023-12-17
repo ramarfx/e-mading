@@ -26,7 +26,7 @@ class PostViewChart
         ->toArray();
 
         return $this->chart->radarChart()
-            ->setTitle('Statistik')
+            ->setTitle('Statistik kategori post')
             ->addData('posts', $data)
             ->setXAxis($categories);
     }

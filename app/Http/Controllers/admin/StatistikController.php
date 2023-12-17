@@ -44,7 +44,7 @@ class StatistikController extends Controller
             $query->whereBelongsTo($currentUser);
         }
 
-        $periodViews = $query->orderBy('viewed_by_count', 'desc')->get();
+        $periodViews = $query->orderBy('viewed_by_count', 'desc')->paginate(15);
 
         $postViewChart = $postViewChart->build();
 
