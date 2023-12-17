@@ -1,12 +1,3 @@
-const toggleButtons = document.querySelectorAll('.delete');
-
-toggleButtons.forEach(function (toggleBtn) {
-    toggleBtn.addEventListener('click', function () {
-        const deleteBtn = this.parentNode.nextSibling;
-        deleteBtn.classList.toggle('show');
-    });
-});
-
 //dropdown
 const dropdownButtons = document.getElementById('dropdownBtn');
 const dropdownContent = document.getElementById('dropdownContent');
@@ -14,9 +5,6 @@ const dropdownContent = document.getElementById('dropdownContent');
 dropdownButtons.addEventListener('click', () => {
     dropdownContent.classList.toggle('show');
 })
-
-
-
 
 //bookmark
 const bookmarkButtons = document.querySelectorAll('.fa-bookmark');
@@ -28,7 +16,6 @@ bookmarkButtons.forEach((bookmarkBtn) => {
     })
 })
 
-
 //search bar
 const searchBtn = document.getElementById('searchBtn');
 const searchBy = document.getElementById('searchBy');
@@ -38,7 +25,7 @@ searchBtn.addEventListener('click', () => {
 })
 
 
-// Fungsi  modal
+//modal
 function toggleModal(id) {
     const modal = document.getElementById(`userRoleModal-${ id }`);
     modal.classList.toggle('hidden');

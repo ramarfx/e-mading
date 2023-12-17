@@ -63,7 +63,7 @@
                       @csrf
                       @method('patch')
                       <button type="submit"><i class="fa-solid fa-check"
-                          onclick="alert('postingan telah disetujui')"></i></button>
+                          onclick="return confirm('Apakah anda yakin ingin menyetujui postingan ini?')"></i></button>
                     </form>
                   @endif
                 </div>
