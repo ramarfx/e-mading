@@ -5,8 +5,8 @@ nis_nip  : 123456
 password : password
 
 role guru
-username : veranika
-email : veranika@gmail.com
+username : guru
+email : guru@gmail.com
 nis_nip : 2222
 password : password
 
