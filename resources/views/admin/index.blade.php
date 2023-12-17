@@ -31,10 +31,16 @@
         </div>
         <div class="relative flex w-full flex-col rounded-md bg-white p-4">
           <h2 class="mb-2 h-full w-full text-lg font-semibold">Top Kunjungan</h2>
-          <div class="flex justify-between border-b">
-            <p class="font-semibold">Judul post</p>
-            <p class="font-semibold">Views</p>
-          </div>
+
+          @if ($topViews->first()->viewed_by_count > 0)
+            <div class="flex justify-between border-b">
+              <p class="font-semibold">Judul post</p>
+              <p class="font-semibold">Views</p>
+            </div>
+            @else
+            <p class="text-center">Belum ada kunjungan</p>
+          @endif
+
           @foreach ($topViews as $post)
             @if ($post->viewed_by_count > 0)
               <div class="flex w-[99%] justify-between border-b py-2">

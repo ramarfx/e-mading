@@ -52,7 +52,7 @@
                   @else
                     <li class="group">
                       <a href="{{ route('login.index') }}"
-                        class="mx-5 flex py-2 text-base text-slate-600 group-hover:text-primary">Login</a>
+                        class="mx-5 flex rounded-md bg-primary px-6 py-2 text-base text-white">Login</a>
                     </li>
                   @endauth
                 </ul>
