@@ -23,8 +23,8 @@ class UserRoleSeeder extends Seeder
         $studentCouncilRole = Role::create([
             'name' => 'osis',
         ]);
-        $studentRole = Role::create([
-            'name' => 'student',
+        $siswaRole = Role::create([
+            'name' => 'siswa',
         ]);
         $ekskulRole = Role::create([
             'name' => 'ekskul',
@@ -41,7 +41,7 @@ class UserRoleSeeder extends Seeder
             'name'    => 'rama',
             'email'   => 'rama@gmail.com',
             'nis_nip' => '3424',
-        ])->roles()->attach($studentRole);
+        ])->roles()->attach($siswaRole);
 
         User::factory()->create([
             'name'    => 'Riyan putra',

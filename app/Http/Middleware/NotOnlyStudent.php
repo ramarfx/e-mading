@@ -16,7 +16,7 @@ class NotOnlyStudent
     public function handle(Request $request, Closure $next): Response
     {
         $user = auth()->user();
-        if ($user && $user->roles->contains('name', 'student')) {
+        if ($user && $user->roles->contains('name', 'siswa')) {
             return redirect()->route('home')->with('error', 'Anda tidak memiliki izin untuk melakukan aksi ini.');
         }
 

@@ -27,7 +27,7 @@
                           <li><a href="{{ route('bookmark.index') }}"
                               class="flex items-center gap-3 text-base text-secondary hover:text-primary"><i
                                 class="fa-solid fa-bookmark"></i> favorit saya</a></li>
-                          @if (!auth()->user()->roles->contains('name', 'student'))
+                          @if (!auth()->user()->roles->contains('name', 'siswa'))
                             <li class="group">
                               <a href="{{ route('dashboard') }}"
                                 class="flex items-center gap-3 text-base font-semibold text-secondary hover:text-primary"><i

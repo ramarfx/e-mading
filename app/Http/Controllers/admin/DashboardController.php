@@ -14,7 +14,7 @@ class DashboardController extends Controller
     public function index()
     {
         $currentUser = auth()->user();
-        $isAdmin     = $currentUser->roles->first()->name == 'admin';
+        $isAdmin     = $currentUser->roles->first()->name === 'admin';
 
         $users = User::count();
         $posts = $isAdmin ? Post::count() : Post::whereBelongsTo($currentUser)->count();

@@ -27,23 +27,20 @@ class PostController extends Controller
 
         $query = Post::with('user')
             ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')")
-            ->latest()
-            ->when($category, function ($query) use ($category) {
-                return $query->where('category', $category);
-            })
-            ->when($searchBy, function ($query) use ($searchBy) {
-                return $query->when($searchBy == 'title', function ($query) {
-                    return $query->where('title', 'like', '%' . request('query') . '%');
-                })
-                    ->when($searchBy == 'author', function ($query) {
-                        return $query->whereHas('user', function ($query) {
-                            return $query->where('name', 'like', '%' . request('query') . '%');
-                        });
-                    })
-                    ->when($searchBy == 'date', function ($query) {
-                        return $query->whereDate('created_at', request('query'));
-                    });
+            ->latest();
+
+        if ($category) {
+            $query->where('category', $category);
+        }
+        if ($searchBy == 'title') {
+            $query->where('title', 'like', '%' . request('query') . '%');
+        } elseif ($searchBy == 'author') {
+            $query->whereHas('user', function ($query) {
+                $query->where('name', 'like', '%' . request('query') . '%');
             });
+        } elseif ($searchBy == 'date') {
+            $query->whereDate('created_at', request('query'));
+        }
 
         $posts = $query->whereBelongsTo($user)->get();
 
@@ -143,12 +140,12 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validated = $request->validate([
-            'title'          => 'required', 'max:250', 'string',
-            'description'    => 'required', 'string',
-            'category'       => 'required', 'string',
-            'priority_level' => 'required', 'string',
-            'media'          => 'nullable', 'mimes:jpg,jpeg,png',
-            'link'           => 'nullable',
+            'title'          => ['required', 'max:250', 'string'],
+            'description'    => ['required', 'string'],
+            'category'       => ['required', 'string'],
+            'priority_level' => ['required', 'string'],
+            'media'          => ['nullable', 'mimes:jpg,jpeg,png'],
+            'link'           => ['nullable'],
             'published_at'   => ['nullable', 'date', 'after_or_equal:now'],
         ]);
 
