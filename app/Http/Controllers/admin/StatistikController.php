@@ -48,11 +48,6 @@ class StatistikController extends Controller
 
         $postViewChart = $postViewChart->build();
 
-        // $posts = Post::with('viewedBy')->get()->groupBy(function ($post) {
-        //     return $post->created_at->format('m-Y');
-        // });
-        // return $posts;
-
         return view('admin.statistik.index', compact('periodViews', 'period', 'postViewChart'));
     }
 }

@@ -18,9 +18,9 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'        => mt_rand(1, 5),
+            'user_id'        => mt_rand(1, 10),
             'title'          => fake()->words(5, true),
-            'description'    => fake()->paragraph(10, true),
+            'description'    => fake()->paragraph(50, true),
             'category'       => 'pengumuman',
             'priority_level' => 'biasa',
             'published_at'   => now(),

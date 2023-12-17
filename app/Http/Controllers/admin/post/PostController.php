@@ -117,6 +117,7 @@ class PostController extends Controller
      */
     public function show(Post $post): View
     {
+        //hitung view post
         $user = request()->user();
         if (!$user->viewedPost->contains($post)) {
             $user->viewedPost()->attach($post);
@@ -130,8 +131,9 @@ class PostController extends Controller
      */
     public function edit(Post $post): View
     {
+        $userRole = auth()->user()->roles->first()->name;
 
-        return view('admin.post.edit', compact('post'));
+        return view('admin.post.edit', compact('post','userRole'));
     }
 
     /**
@@ -181,6 +183,12 @@ class PostController extends Controller
 
         $validated['media_path'] = $path ?? $post->media_path;
         $validated['media_type'] = $mediaType ?? $post->media_type;
+
+
+        //reset persetujuan admin jika post diubah
+        if($post->is_accept == true){
+            $validated['is_accept'] = false;
+        }
 
         $post->update($validated);
 

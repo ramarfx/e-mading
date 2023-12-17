@@ -10,11 +10,11 @@
   @vite('resources/css/app.css')
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
   @yield('head')
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
 </head>
 
-<body onload="getData()">
+<body>
   @include('components.navbar')
 
   <div class="mt-[80px]">
@@ -26,7 +26,6 @@
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="{{ asset('assets/js/period.js') }}"></script>
 @yield('scripts')
-{{-- @vite('resources/js/app.js') --}}
 </body>
 
 </html>

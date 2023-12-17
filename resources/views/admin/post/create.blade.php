@@ -53,12 +53,8 @@
             <label for="priority_level" class="mb-2 block text-sm font-bold text-gray-700">Tingkat Prioritas</label>
             <select id="priority_level" name="priority_level" required
               class="w-full rounded border px-3 py-2 leading-tight text-gray-700">
-              @if ($userRole === 'ekskul')
-                <option {{ old('priority_level') == 'biasa' ? 'selected' : null }} value="biasa">Biasa</option>
-              @else
                 <option {{ old('priority_level') == 'biasa' ? 'selected' : null }} value="biasa">Biasa</option>
                 <option {{ old('priority_level') == 'penting' ? 'selected' : null }} value="penting">Penting</option>
-              @endif
             </select>
             @error('priority_level')
               <p class="mt-0.5 text-sm text-red-500">{{ $message }}</p>
