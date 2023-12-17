@@ -20,7 +20,7 @@ class UserRoleSeeder extends Seeder
         $guruRole = Role::create([
             'name' => 'guru',
         ]);
-        $studentCouncilRole = Role::create([
+        $osisRole = Role::create([
             'name' => 'osis',
         ]);
         $siswaRole = Role::create([
@@ -37,16 +37,17 @@ class UserRoleSeeder extends Seeder
             'nis_nip' => '123456',
         ])->roles()->attach($adminRole);
 
-        foreach (User::factory(10)->create() as $user) {
+        foreach (User::factory(5)->create() as $user) {
             $user->roles()->attach($guruRole);
         }
-
-        // User::factory(10)->roles()->attach($guruRole);
-
-        // User::factory(15)->roles()->attach($studentCouncilRole);
-
-        // User::factory(7)->roles()->attach($ekskulRole);
-
-        // User::factory(30)->roles()->attach($siswaRole);
+        foreach (User::factory(10)->create() as $user) {
+            $user->roles()->attach($osisRole);
+        }
+        foreach (User::factory(10)->create() as $user) {
+            $user->roles()->attach($ekskulRole);
+        }
+        foreach (User::factory(15)->create() as $user) {
+            $user->roles()->attach($siswaRole);
+        }
     }
 }

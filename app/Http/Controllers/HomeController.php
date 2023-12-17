@@ -23,7 +23,7 @@ class HomeController extends Controller
             ->where('is_accept', true)
             ->where('is_published', true)
             ->whereDate('published_at', '<=', now())
-            ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')")
+            ->orderBy('published_at', 'desc')
             ->when($category, function ($query) use ($category) {
                 return $query->where('category', $category);
             })

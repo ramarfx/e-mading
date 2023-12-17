@@ -41,8 +41,7 @@
                   {{ $post->created_at->diffForHumans() }}</p>
                 <div class="flex items-center justify-between border-t py-3">
                   <div class="flex items-center gap-2">
-                    <div class="h-5 w-5 rounded-full bg-primary"></div>
-                    <p class="text-sm text-secondary">{{ $post->user->name }}</p>
+                    <p class="text-xs truncate text-secondary">{{ $post->user->name }}</p>
                     <p class="rounded bg-orange-200 p-0.5 text-xs text-orange-800">{{ $post->user->roles->first()->name }}
                     </p>
                   </div>

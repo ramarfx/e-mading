@@ -26,7 +26,7 @@ class PostController extends Controller
         $searchBy = request('search_by');
 
         $query = Post::with('user')
-            ->orderByRaw("FIELD(priority_level, 'penting', 'biasa')")
+            ->orderBy('published_at', 'desc')
             ->latest();
 
         if ($category) {
@@ -80,6 +80,7 @@ class PostController extends Controller
             $validated['published_at'] = $parsedPublishDate;
         } else {
             $validated['published_at'] = Carbon::now();
+            $validated['is_published'] = true;
         }
 
         //upload media
@@ -133,7 +134,7 @@ class PostController extends Controller
     {
         $userRole = auth()->user()->roles->first()->name;
 
-        return view('admin.post.edit', compact('post','userRole'));
+        return view('admin.post.edit', compact('post', 'userRole'));
     }
 
     /**
@@ -186,7 +187,7 @@ class PostController extends Controller
 
 
         //reset persetujuan admin jika post diubah
-        if($post->is_accept == true){
+        if ($post->is_accept == true) {
             $validated['is_accept'] = false;
         }
 

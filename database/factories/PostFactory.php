@@ -18,11 +18,11 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'        => mt_rand(1, 10),
+            'user_id'        => mt_rand(1, 25),
             'title'          => fake()->words(5, true),
             'description'    => fake()->paragraph(50, true),
-            'category'       => 'pengumuman',
-            'priority_level' => 'biasa',
+            'category'       => fake()->randomElement(['pengumuman', 'event', 'artikel', 'ekstrakulikuler']),
+            'priority_level' => fake()->randomElement(['biasa', 'penting']),
             'published_at'   => now(),
             'is_published'   => true
         ];
