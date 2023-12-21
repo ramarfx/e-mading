@@ -2,31 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
     @apply m-0 p-0 box-border font-poppins;
 }
 
-.active{
+.active {
     @apply px-5 py-2 rounded-md bg-primary text-white;
 }
 
-
-.navbar-fixed{
+.navbar-fixed {
     @apply fixed z-[9999];
 }
-.hamburger-line{
+.hamburger-line {
     @apply w-[30px] h-[2px] my-2 block bg-black;
 }
-.hamburger-active > span:nth-child(1){
-    @apply rotate-45 ;
+.hamburger-active > span:nth-child(1) {
+    @apply rotate-45;
 }
-.hamburger-active > span:nth-child(2){
+.hamburger-active > span:nth-child(2) {
     @apply scale-0;
 }
-.hamburger-active > span:nth-child(3){
-    @apply -rotate-45 ;   
+.hamburger-active > span:nth-child(3) {
+    @apply -rotate-45;
 }
-
 
 .input-container {
     @apply relative w-full;
@@ -35,20 +33,23 @@
     @apply absolute left-4 top-4 transition-all ease-in-out duration-200 z-10 text-gray-500 text-base before:content-[''] before:h-[5px] before:bg-white before:absolute before:left-0 before:top-[10px] before:w-full before:-z-10;
 }
 .input-container input {
-    @apply p-3 w-full h-full border-2 border-secondary border-opacity-25 outline-none rounded text-base transition-all ease-in-out duration-300 ;
+    @apply p-3 w-full h-full border-2 border-secondary border-opacity-25 outline-none rounded text-base transition-all ease-in-out duration-300;
 }
 .input-container input:not(:placeholder-shown),
 .input-container input:focus {
-  @apply border-2 border-primary;
+    @apply border-2 border-primary;
 }
 .input-container input:not(:placeholder-shown) + label,
 .input-container input:focus + label {
     @apply -top-[15px] text-primary text-base bg-white;
 }
 
-.show{
+.show {
     @apply block;
 }
-
-
-
+.line{
+    @apply relative;
+}
+.line:before {
+    @apply content-[''] absolute bg-secondary bg-opacity-80 bottom-1/2 w-full h-[0.5px];
+}
