@@ -8,7 +8,7 @@
             <div class="flex items-center px-4">
               <nav id="navMenu"
                 class="shadow-lightDark-100 top-full block w-full max-w-[200px] rounded-lg py-5 shadow-sm lg:mr-10 lg:max-w-full">
-                <ul class="block lg:flex">
+                <ul class="block lg:flex gap-5">
                   @auth
 
                     <div class="relative flex flex-col items-center">
@@ -52,7 +52,11 @@
                   @else
                     <li class="group">
                       <a href="{{ route('login.index') }}"
-                        class="mx-5 flex rounded-md bg-primary px-6 py-2 text-base text-white">Login</a>
+                        class="flex rounded-md bg-primary px-6 py-2 text-base text-white">Login</a>
+                    </li>
+                    <li class="group">
+                      <a href="{{ route('register.index') }}">
+                        <button class="rounded-md bg-transparent border border-primary px-6 py-2 text-base text-primary">Register</a>
                     </li>
                   @endauth
                 </ul>
