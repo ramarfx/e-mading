@@ -18,6 +18,8 @@ class UsersController extends Controller
             ->get();
         $roles = Role::all();
 
+        // return $users[0]->roles->first()->name;
+
 
         return view('admin.account.index', compact('users', 'roles'));
     }

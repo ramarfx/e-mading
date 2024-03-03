@@ -8,7 +8,7 @@
             <div class="flex items-center px-4">
               <nav id="navMenu"
                 class="shadow-lightDark-100 top-full block w-full max-w-[200px] rounded-lg py-5 shadow-sm lg:mr-10 lg:max-w-full">
-                <ul class="block lg:flex gap-5">
+                <ul class="block gap-5 lg:flex">
                   @auth
 
                     <div class="relative flex flex-col items-center">
@@ -34,14 +34,16 @@
                                   class="fa-solid fa-table-columns"></i> Dashboard</a>
                             </li>
                           @endif
-                          <li><a href="#"
+                          <li>
+                            <div
                               class="flex items-center gap-3 border-t pt-2 text-base text-secondary hover:text-primary">
                               <i class="fa-solid fa-right-from-bracket"></i>
                               <form action="{{ route('logout') }}" method="post">
                                 @csrf
                                 <button type="submit">Logout</button>
                               </form>
-                            </a></li>
+                            </div>
+                          </li>
 
                           </li>
                         </ul>
@@ -56,7 +58,8 @@
                     </li>
                     <li class="group">
                       <a href="{{ route('register.index') }}">
-                        <button class="rounded-md bg-transparent border border-primary px-6 py-2 text-base text-primary">Register</a>
+                        <button
+                          class="rounded-md border border-primary bg-transparent px-6 py-2 text-base text-primary">Register</a>
                     </li>
                   @endauth
                 </ul>

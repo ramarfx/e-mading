@@ -32,8 +32,8 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/login', [LoginController::class, 'store'])->name('login.store');
     Route::get('/register', [RegisterController::class, 'create'])->name('register.index');
     Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
-    Route::get('/auth/redirect', [LoginController::class, 'redirectToProvider'])->name('login.redirect');
-    Route::get('/auth/callback', [LoginController::class, 'handleProviderCallback'])->name('login.callback');
+    Route::get('/auth/redirect', [LoginController::class, 'redirectToProvider'])->name('google.redirect');
+    Route::get('/auth/callback', [LoginController::class, 'handleProviderCallback'])->name('google.callback');
 });
 
 

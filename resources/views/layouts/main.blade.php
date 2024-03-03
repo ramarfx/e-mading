@@ -7,12 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>e-mading</title>
   <link rel="icon" href="{{ asset('assets/img/mading.png') }}">
-  <script src="https://kit.fontawesome.com/2c2ad9e412.js" crossorigin="anonymous"></script>
   @vite('resources/css/app.css')
+  <script src="https://kit.fontawesome.com/2c2ad9e412.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  @yield('head')
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+  @yield('head')
 </head>
 
 <body>

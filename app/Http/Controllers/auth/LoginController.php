@@ -72,7 +72,7 @@ class LoginController extends Controller
                 auth()->login($user, true);
                 return redirect()->route('home');
             }
-        } catch (Exception $e) {
+        } catch (Exception) {
             return redirect()->route('login.index');
         }
     }

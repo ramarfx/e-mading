@@ -7,7 +7,6 @@ use App\Models\Post;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
@@ -120,7 +119,7 @@ class PostController extends Controller
     {
         //hitung view post
         $user = request()->user();
-        
+
         if (!$user->viewedPost->contains($post) && $post->is_published && $post->is_accept) {
             $user->viewedPost()->attach($post);
         }

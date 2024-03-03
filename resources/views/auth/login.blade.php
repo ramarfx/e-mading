@@ -34,12 +34,12 @@
           </div>
           <div class="mb-4">
             <div class="flex w-full items-center justify-center">
-              <button
+              <a href="{{ route('google.redirect') }}"
                 class="relative flex w-full justify-center rounded-lg border border-slate-200 px-4 py-2 text-slate-700">
                 <img class="absolute left-6 h-6 w-6" src="{{ asset('assets/img/auth/google.svg') }}" loading="lazy"
                   alt="google logo">
                 <span>Login dengan Google</span>
-              </button>
+              </a>
             </div>
           </div>
         </form>
